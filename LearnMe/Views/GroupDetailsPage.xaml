@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnMe.Views.GroupDetailsPage">
+
+
+    <Grid
+      Margin="24,52,24,0"
+      IgnoreSafeArea="{OnPlatform Android=True, iOS=False}"
+      ColumnDefinitions="*,*"
+      RowDefinitions="Auto,*">
+
+        <!-- Header Icons -->
+        <ImageButton
+          WidthRequest="24"
+          HeightRequest="24"
+          Source="imgback.png"
+          Grid.Row="0"
+          Grid.Column="0"
+          HorizontalOptions="Start"
+          VerticalOptions="Center"
+          Clicked="BackButton_Clicked" />
+
+        <ImageButton
+          WidthRequest="24"
+          HeightRequest="24"
+          Source="imgmenu.png"
+          Grid.Row="0"
+          Grid.Column="1"
+          HorizontalOptions="End"
+          VerticalOptions="Center" />
+
+
+        <!-- Main Content ScrollView -->
+        <ScrollView
+          Grid.Row="1"
+          Grid.Column="0"
+          Grid.ColumnSpan="2"
+          HorizontalScrollBarVisibility="Never"
+          VerticalScrollBarVisibility="Never"
+          Margin="0,16,0,0">
+
+            <VerticalStackLayout
+              Spacing="18">
+
+                <!-- Group Image -->
+                <Image
+                  Source="{Binding HeroImage}"
+                  Aspect="AspectFit"
+                  HorizontalOptions="Fill"
+                  HeightRequest="240"
+                  Margin="24,0" />
+
+                <!-- Group Name -->
+                <Label
+                  Style="{StaticResource GroupHeaderStyle}"
+                  Text="{Binding Name}"
+                  Margin="0,-24,0,0"/>
+
+                <!-- Divider -->
+                <Rectangle
+                  HorizontalOptions="Fill"
+                  HeightRequest="2"
+                  Stroke="Transparent"
+                  Fill="{StaticResource LightBorderColor}" />
+
+                <!-- Group Info -->
+                <Label
+                  Style="{StaticResource GroupDetailsTextStyle}"
+                  LineBreakMode="WordWrap"
+                  Text="{Binding Description}" />
+
+
+                <!-- Divider -->
+                <Rectangle
+                  HorizontalOptions="Fill"
+                  HeightRequest="2"
+                  Stroke="Transparent"
+                  Fill="{StaticResource LightBorderColor}" />
+
+                <!-- Group Gallery -->
+                <!--
+              <Label
+                  Style="{StaticResource PlanetHeaderSubtitleStyle}"
+                  Text="Gallery" />-->
+
+                <!--<CollectionView
+                  Margin="0,-6,0,0"
+                  HeightRequest="160"
+                  ItemsSource="{Binding Images}">
+
+                  <CollectionView.ItemsLayout>
+                      <LinearItemsLayout
+                          Orientation="Horizontal"
+                          ItemSpacing="16" />
+                  </CollectionView.ItemsLayout>
+
+                  <CollectionView.ItemTemplate>
+                      <DataTemplate>
+                          <Image
+                              Source="{Binding .}"
+                              Aspect="AspectFill"
+                              HorizontalOptions="Fill"
+                              VerticalOptions="Fill"
+                              WidthRequest="160">
+                              <Image.Clip>
+                                  <RoundRectangleGeometry
+                                      Rect="0,0,160,160"
+                                      CornerRadius="16" />
+                              </Image.Clip>
+                          </Image>
+                      </DataTemplate>
+                  </CollectionView.ItemTemplate>
+
+              </CollectionView>-->
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+    </Grid>
+</ContentPage>
