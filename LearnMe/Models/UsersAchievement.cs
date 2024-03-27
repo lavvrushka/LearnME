@@ -5,19 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace LearnMe.Models
 {
-    [Table("Note")]
-    public class Note
+    [Table("UsersAchievement")]
+    public class UsersAchievement
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [Column("Text")]
-        public string Text { get; set; }
+        [Column("AchievementId")]
+        public int AchievementId { get; set; }
 
-        [Column("CardId")]
-        public int CardId { get; set; }
+        [Column("UserId")]
+        public int UserId { get; set; }
     }
 }

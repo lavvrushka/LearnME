@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LearnMe.Views.SingUpPage">
+             x:Class="LearnMe.Views.SignUpPage">
 
     <Frame HeightRequest="480" WidthRequest="350" CornerRadius="14">
         <StackLayout VerticalOptions="Center">

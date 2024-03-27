@@ -1,15 +1,24 @@
+using LearnMe.ViewModels;
+
 namespace LearnMe.Views;
 
-public partial class FirstPage : ContentPage
+
+public partial class Authentication : ContentPage
 {
-	public FirstPage()
+    private readonly AuthenticationViewModel _viewModel;
+
+    public Authentication(AuthenticationViewModel viewModel)
 	{
-		InitializeComponent();
-	}
+        _viewModel = viewModel;
+        InitializeComponent();
+        BindingContext = viewModel;
+
+    }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+
 
         if (this.AnimationIsRunning("TransitionAnimation"))
             return;
@@ -31,9 +40,17 @@ public partial class FirstPage : ContentPage
 
         //Commit the animation
         parentAnimation.Commit(this, "TransitionAnimation", 16, 2500, null, null);
+
+        if (_viewModel.isLoggedIn())
+        {
+            await Task.Delay(5);
+            await Shell.Current.GoToAsync("//home/main");
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+        }
     }
 
     async void Get_Started_Clicked(System.Object sender, System.EventArgs e)
-        => Application.Current.MainPage = new NavigationPage(new MainPage());
+        => Application.Current.MainPage = new NavigationPage(new LoginPage());
+
 
 }

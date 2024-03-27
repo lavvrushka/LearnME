@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace LearnMe.Models
 {
-    public class StudyMode
+    public class UserSession
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-
+        public string Token { get; set; }
+        public DateTime Expiration { get; set; }
+        public int UserId { get; set; }
     }
 }

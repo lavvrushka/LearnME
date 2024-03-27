@@ -57,19 +57,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="8.0.3" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Data\" />
+	  <Compile Update="Views\AuthenticationPage.xaml.cs">
+	    <DependentUpon>AuthenticationPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SignUpPage.xaml.cs">
+	    <DependentUpon>SignUpPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\FirstPage.xaml">
+	  <MauiXaml Update="Views\AuthenticationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\GroupDetailsPage.xaml">
@@ -78,7 +85,7 @@
 	  <MauiXaml Update="Views\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\SingUpPage.xaml">
+	  <MauiXaml Update="Views\SignUpPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\User.xaml">
