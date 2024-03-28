@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LearnMe.Views.Authentication">
+             x:Class="LearnMe.Views.AuthenticationPage"
+             xmlns:viewmodels="clr-namespace:LearnMe.ViewModels"
+             x:DataType="viewmodels:AuthenticationViewModel">
     
     
     <Grid
@@ -142,13 +144,12 @@
 
                 <Button
                    Style="{StaticResource ButtonStyle}"
+                   Command="{Binding LoginPageCommand}"
                    Text="Get Started"
                    HorizontalOptions="Center"
-                   Margin="0,12,0,6"
-                   Clicked="Get_Started_Clicked"/>
+                   Margin="0,12,0,6"/>
 
             </VerticalStackLayout>
-
         </Border>
 
     </Grid>

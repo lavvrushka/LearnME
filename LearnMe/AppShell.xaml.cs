@@ -1,4 +1,6 @@
-﻿namespace LearnMe
+﻿using System.Windows.Input;
+
+namespace LearnMe
 {
     public partial class AppShell : Shell
     {

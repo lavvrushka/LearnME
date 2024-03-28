@@ -3,11 +3,11 @@ using LearnMe.ViewModels;
 namespace LearnMe.Views;
 
 
-public partial class Authentication : ContentPage
+public partial class AuthenticationPage : ContentPage
 {
     private readonly AuthenticationViewModel _viewModel;
 
-    public Authentication(AuthenticationViewModel viewModel)
+    public AuthenticationPage(AuthenticationViewModel viewModel)
 	{
         _viewModel = viewModel;
         InitializeComponent();
@@ -41,16 +41,15 @@ public partial class Authentication : ContentPage
         //Commit the animation
         parentAnimation.Commit(this, "TransitionAnimation", 16, 2500, null, null);
 
+
         if (_viewModel.isLoggedIn())
         {
             await Task.Delay(5);
             await Shell.Current.GoToAsync("//home/main");
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
         }
-    }
-
-    async void Get_Started_Clicked(System.Object sender, System.EventArgs e)
-        => Application.Current.MainPage = new NavigationPage(new LoginPage());
+   
+}
 
 
 }

@@ -40,7 +40,7 @@ namespace LearnMe.ViewModels
             try
             {
                 _authenticationService.Login(Username, Password, RememberMe);
-                Shell.Current.GoToAsync("//home/main");
+                Shell.Current.GoToAsync("//main");
                 Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
             }
             catch (Exception e)

@@ -5,10 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:LearnMe"
     xmlns:views="clr-namespace:LearnMe.Views"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:controls="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
 
-    <ShellContent
-      ContentTemplate="{DataTemplate views:AuthenticationPage}"
-      Route="FirstPage" />
+    <ShellContent  Route="auth_main" ContentTemplate="{DataTemplate views:AuthenticationPage}" />
+    <ShellContent  Route="auth_login" ContentTemplate="{DataTemplate views:LoginPage}" />
+    <ShellContent  Route="auth_signup" ContentTemplate="{DataTemplate views:SignUpPage}" />
+    <ShellContent  Route="main" ContentTemplate="{DataTemplate views:MainPage}" />
+  
+
 
 </Shell>

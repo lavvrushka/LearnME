@@ -29,5 +29,9 @@ namespace LearnMe.ViewModels
         {
             return _authenticationService.TryAutoLogin();
         }
+        public AuthenticationService GetAuthentication()
+        {
+            return _authenticationService;
+        }
     }
 }

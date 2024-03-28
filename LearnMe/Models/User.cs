@@ -9,7 +9,7 @@ using SQLite;
 
 namespace LearnMe.Models
 {
-    [Table("User")] // Указываем имя таблицы в базе данных SQLite
+    [Table("Users")] // Указываем имя таблицы в базе данных SQLite
     public class User
     {
         [PrimaryKey, AutoIncrement] // Указываем, что поле Id является первичным ключом и автоматически генерируемым
