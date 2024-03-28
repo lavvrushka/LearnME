@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LearnMe.Views.LoginPage">
+             x:Class="LearnMe.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+
 
     <Frame HeightRequest="460" WidthRequest="350" CornerRadius="14">
         <StackLayout VerticalOptions="Center">
@@ -34,7 +37,7 @@
 
                 <Button 
              HorizontalOptions="Fill" 
-             Command="{Binding SignUpCommand}" 
+             Command="{Binding LoginCommand}" 
              Text="Let's Go!" 
              Margin="0,0,0,20" 
              TextColor="White" 

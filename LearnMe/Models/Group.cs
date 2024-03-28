@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,23 @@ using System.Threading.Tasks;
 
 namespace LearnMe.Models
 {
+    [Table("Group")]
     public class Group
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
+        [Column("Name"), NotNull, Unique]
         public string Name { get; set; }
+
+        [Column("Description"), NotNull]
         public string Description { get; set; }
-        public List<Card> Cards { get; set; }
 
+        [Column("UserId")]
         public int UserId { get; set; }
-        public bool IsBased { get; set; }
-        public User User { get; set; }
 
+
+        
         public Color AccentColorStart { get; set; }
         public Color AccentColorEnd { get; set; }
         public List<string> Images { get; set; }

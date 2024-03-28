@@ -9,12 +9,11 @@ using LearnMe.Service;
 
 namespace LearnMe.ViewModels
 {
-    public partial class LoginViewModel : ObservableObject
+    public partial class SignUpViewModel : ObservableObject
     {
-
         private readonly AuthenticationService _authenticationService;
 
-        public LoginViewModel(AuthenticationService authenticationService)
+        public SignUpViewModel(AuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
         }
@@ -26,27 +25,25 @@ namespace LearnMe.ViewModels
         string password;
 
         [ObservableProperty]
-        bool rememberMe;
+        string confirmedPassword;
+
+        [ObservableProperty]
+        string email;
 
         [RelayCommand]
-        void SignUpPage()
+        void SignUp()
         {
-            Shell.Current.GoToAsync("//auth_signup");
+            if (_authenticationService.SignUp(Username, Password, Email))
+            {
+                Shell.Current.GoToAsync("//auth_login");
+            }
         }
 
         [RelayCommand]
-        void Login()
+        void LoginPage()
         {
-            try
-            {
-                _authenticationService.Login(Username, Password, RememberMe);
-                Shell.Current.GoToAsync("//main");
-                Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
-            }
-            catch (Exception e)
-            {
-                Shell.Current.DisplayAlert("Error", e.Message, "Ok");
-            }
+            Shell.Current.GoToAsync("//auth_login");
         }
+
     }
 }
