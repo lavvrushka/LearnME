@@ -125,7 +125,7 @@
                              Orientation="Horizontal"
                              ItemSpacing="16" />
                         </CollectionView.ItemsLayout>
-
+ 
                         <CollectionView.ItemTemplate>
                             <DataTemplate
                              x:DataType="models:Group">
@@ -265,8 +265,10 @@
                      Grid.Row="0"
                      Grid.Column="0"
                      HorizontalOptions="Center"
-                     BackgroundColor="Transparent"/>
-                    <!--Clicked="ExploreButton_Clicked"-->
+                     BackgroundColor="Transparent"
+                     Clicked="ExplorePage_Clicked"/>
+                     <!--Command="{Binding ExploreCommand}"/>-->
+                    
                     <Label
                      Text="Explore"
                      Grid.Row="1"
@@ -281,8 +283,10 @@
                      Grid.Row="0"
                      Grid.Column="1"
                      HorizontalOptions="Center"
-                     BackgroundColor="Transparent"/>
-                    <!--Clicked="FavoriteButton_Clicked"-->
+                     BackgroundColor="Transparent"
+                     Clicked="CreateGroupPage_Clicked"/>
+                     <!--Command="{Binding CreateCommand}"/>-->
+                    
                     <Label
                      Text="Create"
                      Grid.Row="1"
@@ -297,8 +301,10 @@
                      Grid.Row="0"
                      Grid.Column="2"
                      HorizontalOptions="Center"
-                     BackgroundColor="Transparent"/>
-                    <!--Clicked="ProfileButton_Clicked"-->
+                     BackgroundColor="Transparent"
+                     Clicked="ProfilePage_Clicked"/>
+                    <!--Command="{Binding ProfileCommand}"/>-->
+                    
                     <Label
                      Text="Profile"
                      Grid.Row="1"

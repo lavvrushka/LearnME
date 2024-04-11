@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Models="clr-namespace:LearnMe.Models"
+             x:Name="this"
+             x:Class="LearnMe.CustomControls.HorizontalCalendar">
+
+
+    <CollectionView ItemsSource="{Binding Source={x:Reference this}, Path=Dates}">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Models:AchievementsDatePicker">
+                <Frame WidthRequest="80" Padding="15" BackgroundColor="White" >
+                    <VerticalStackLayout Margin="10">
+                        <Label
+                            Text="{Binding Date, StringFormat='{0:ddd}'}"
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            />
+                        <Label
+                            Text="{Binding Date, StringFormat='{0:d }'}"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</StackLayout>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnMe.Views.UserSettingsPage"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+
+    <ScrollView>
+        
+        <VerticalStackLayout>
+            <HorizontalStackLayout Margin="30">
+                <ImageButton
+                    WidthRequest="24"
+                    HeightRequest="24"
+                    Source="imgback.png"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Clicked="BackButton_Clicked" />
+
+                <Label
+                    TextColor="White" 
+                    FontFamily="MediumFont"
+                    FontSize="20" 
+                    Text="  Settings"
+                    VerticalOptions="CenterAndExpand"/>
+            </HorizontalStackLayout>
+
+            <Label
+                Margin="10"
+                TextColor="White" 
+                FontFamily="MediumFont"
+                FontSize="20" 
+                Text="Personal information"
+                VerticalOptions="CenterAndExpand"/>
+
+            <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="270" >
+                <StackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50">
+                            <StackLayout Orientation="Horizontal" Spacing="105">
+                                <Label 
+                                    Margin="10,10,0,0"
+                        TextColor="White"
+                        Text="Name" 
+                        FontSize="16" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start"/>
+                                <Label 
+                        TextColor="White"
+                        Text="{Binding User.Username}" 
+                        FontSize="16" 
+                        FontAttributes="Bold" 
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50">
+                            <StackLayout Orientation="Horizontal" Spacing="105">
+                                <Label 
+                                    Margin="10,10,0,0"
+                        TextColor="White"
+                        Text="Email" 
+                        FontSize="16" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start"/>
+                                <Entry 
+                        x:Name="EmailEntry" 
+                        Text="{Binding Email}" 
+                        Placeholder="...@gmail.com" 
+                        HorizontalOptions="End"
+                        WidthRequest="210"/>
+                            </StackLayout>
+                        </Frame>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50">
+                            <StackLayout Orientation="Horizontal" Spacing="40">
+                                <Label 
+                                    Margin="10,10,0,0"
+                        TextColor="White"
+                        Text="New password" 
+                        FontSize="16" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start"/>
+                                <Entry 
+                        x:Name="passwordEntry" 
+                        Text="{Binding NewPassword}" 
+                        Placeholder="New password" 
+                        IsPassword="True" 
+                        HorizontalOptions="Start"
+                        WidthRequest="210"/>
+                            </StackLayout>
+                        </Frame>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50" >
+                            <StackLayout Orientation="Horizontal" Spacing="16">
+                                <Label 
+                                    Margin="10,10,0,0"
+                        TextColor="White"
+                        Text="Confirm password" 
+                        FontSize="16" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start"/>
+                                <Entry 
+                        x:Name="confirmedPasswordEntry" 
+                        Text="{Binding ConfirmedPassword}" 
+                        Placeholder="Confirm password" 
+                        IsPassword="True" 
+                        HorizontalOptions="Start" 
+                        WidthRequest="210"/>
+                            </StackLayout>
+                        </Frame>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Margin="0,0,0,0" HorizontalOptions="Center">
+                        <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="70">
+                            <StackLayout Orientation="Horizontal" Spacing="110">
+                                <Button 
+                 Text="Save changes" 
+                 Command="{Binding SaveChangesCommand}" 
+                 BackgroundColor="#eb5757" 
+                 TextColor="White" 
+                 FontSize="16"
+                 FontFamily="MediumFont"
+                 CornerRadius="10"
+                 WidthRequest="120"
+                 HeightRequest="50"
+                 Margin="10"/>
+
+                                <Switch 
+                 IsToggled="{Binding IsPasswordVisible}" 
+                 HorizontalOptions="Start"
+                 VerticalOptions="Center"
+                 Toggled="OnShowPasswordButtonToggled"
+                 OnColor="Grey"
+                 ThumbColor="#eb5757"/>
+                            </StackLayout>
+                        </Frame>
+                    </HorizontalStackLayout>
+                </StackLayout>
+            </Frame>
+
+           
+
+
+            <Label
+              Margin="10,40,0,10"
+              TextColor="White" 
+              FontFamily="MediumFont"
+              FontSize="20" 
+              Text="Notifications"
+              VerticalOptions="CenterAndExpand"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50">
+                    <StackLayout Orientation="Horizontal" Spacing="105">
+                        <Label 
+                            Margin="10"
+                            TextColor="White"
+                            Text="Push notifications" 
+                            FontSize="16" 
+                            HorizontalOptions="Start" 
+                            VerticalOptions="Start"/>
+                        <Switch 
+                            IsToggled="{Binding IsPasswordVisible}" 
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            Toggled="OnShowPasswordButtonToggled"
+                            OnColor="Grey"
+                            ThumbColor="#eb5757"/>
+                    </StackLayout>
+                </Frame>
+            </HorizontalStackLayout>
+
+            <Label
+              Margin="10,40,0,10"
+              TextColor="White" 
+              FontFamily="MediumFont"
+              FontSize="20" 
+              Text="Change account"
+              VerticalOptions="CenterAndExpand"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="70">
+                    <StackLayout Orientation="Horizontal" Spacing="105">
+                        <Button 
+                             Text="Exit" 
+                             Command="{Binding ExitCommand}" 
+                             BackgroundColor="#eb5757" 
+                             TextColor="White" 
+                             FontSize="16"
+                             FontFamily="MediumFont"
+                             CornerRadius="10"
+                             WidthRequest="120"
+                             HeightRequest="50"
+                             Margin="115,5,5,5"/>
+                    </StackLayout>
+                </Frame>
+            </HorizontalStackLayout>
+
+           
+
+            <Label
+              Margin="10,40,0,10"
+              TextColor="White" 
+              FontFamily="MediumFont"
+              FontSize="20" 
+              Text="Report a problem"
+              VerticalOptions="CenterAndExpand"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50">
+                    <StackLayout Orientation="Horizontal" Spacing="105">
+                        <Label 
+                          HorizontalOptions="Center"
+                          Margin="10,10,10,10"
+                          TextColor="White"
+                          Text="learnmehelp@gmail.com" 
+                          FontSize="16" 
+                          VerticalOptions="Start"/>
+
+                    </StackLayout>
+                </Frame>
+            </HorizontalStackLayout>
+          
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

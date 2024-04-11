@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnMe.Views.UserPage"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <!-- Profile Pic -->
+            <VerticalStackLayout Margin="30">
+                <ImageButton
+                   WidthRequest="24"
+                   HeightRequest="24"
+                   Source="imgback.png"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Clicked="BackButton_Clicked" />
+
+
+
+                <ImageButton
+                    x:Name="AvatarButton"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="80"
+                    HeightRequest="80"
+                    CornerRadius="40" 
+                    Clicked="Avatar_Clicked"/>
+
+                <Label
+                   Margin="10"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"
+                   TextColor="White" 
+                   FontFamily="MediumFont"
+                   FontSize="20" 
+                   Text="admin"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Button 
+                    Command="{Binding AllGroupsCommand}" 
+                    Text="📚 Your groups                           >" 
+                    Margin="10" 
+                    BackgroundColor="Transparent" 
+                    BorderColor="#2E3756" 
+                    TextColor="White" 
+                    FontSize="20" 
+                    WidthRequest="360"
+                    HeightRequest="60"
+                    CornerRadius="10"
+                    VerticalOptions="CenterAndExpand"
+                    Clicked="Groups_Clicked"/>
+
+                <Button 
+                    Command="{Binding SettingsCommand}" 
+                    Text="⚙ Your settings                         >" 
+                    Margin="5" 
+                    BackgroundColor="Transparent" 
+                    BorderColor="#2E3756" 
+                    TextColor="White" 
+                    FontFamily="MediumFont"
+                    FontSize="20" 
+                    WidthRequest="360"
+                    HeightRequest="60"
+                    CornerRadius="10"
+                    VerticalOptions="CenterAndExpand"
+                    Clicked="Settings_Clicked"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Margin="80">
+                <HorizontalStackLayout Spacing="80" Padding="5">
+                    <Label
+                           TextColor="White" 
+                           FontFamily="MediumFont"
+                           FontSize="20" 
+                           Text="Achievements"
+                           VerticalOptions="CenterAndExpand"/>
+
+                    <Button 
+                            FontFamily="MediumFont"
+                            Text="See all" 
+                            BackgroundColor="Transparent" 
+                            BorderColor="Transparent" 
+                            TextColor="White" 
+                            FontSize="16" 
+                            VerticalOptions="CenterAndExpand"
+                            Clicked="SeeAll_Clicked"/>
+                </HorizontalStackLayout>
+
+                <ImageButton 
+                        x:Name="AchievementsButton"
+                        WidthRequest="370"
+                        HeightRequest="260"
+                        Source="achdva.jpg"
+                        CornerRadius="15"
+                        HorizontalOptions="Center"
+                        BackgroundColor="Transparent"
+                        Aspect="AspectFill"
+                        Clicked="Achievements_Clicked"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

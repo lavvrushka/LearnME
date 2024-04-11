@@ -45,11 +45,11 @@ public partial class AuthenticationPage : ContentPage
         if (_viewModel.isLoggedIn())
         {
             await Task.Delay(5);
-            await Shell.Current.GoToAsync("//home/main");
+            await Shell.Current.GoToAsync("//main");
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
         }
-   
-}
+
+    }
 
 
 }

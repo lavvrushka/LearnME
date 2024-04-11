@@ -27,8 +27,6 @@ namespace LearnMe
 
             builder.Services.AddSingleton<UserRepository>();
             builder.Services.AddSingleton<UserSessionRepository>();
-
-
       
             builder.Services.AddSingleton<AuthenticationService>();
 
@@ -42,6 +40,22 @@ namespace LearnMe
             builder.Services.AddSingleton<SignUpPage>();
 
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<MainViewModel>();
+
+            builder.Services.AddSingleton<ExploreViewModel>();
+            builder.Services.AddSingleton<ExplorePage>();
+
+            builder.Services.AddSingleton<UserViewModel>();
+            builder.Services.AddSingleton<UserPage>();
+
+            builder.Services.AddSingleton<CreateGroupViewModel>();
+            builder.Services.AddSingleton<CreateGroupPage>();
+
+            builder.Services.AddSingleton<UserGroupsPage>();
+            builder.Services.AddSingleton<AchievementsPage>();
+            builder.Services.AddSingleton<UserSettingsPage>();
+            builder.Services.AddSingleton<AvatarPage>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

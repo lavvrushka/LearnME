@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LearnMe.Views.GroupDetailsPage">
+             x:Class="LearnMe.Views.GroupDetailsPage"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
 
 
     <Grid
@@ -77,42 +79,6 @@
                   HeightRequest="2"
                   Stroke="Transparent"
                   Fill="{StaticResource LightBorderColor}" />
-
-                <!-- Group Gallery -->
-                <!--
-              <Label
-                  Style="{StaticResource PlanetHeaderSubtitleStyle}"
-                  Text="Gallery" />-->
-
-                <!--<CollectionView
-                  Margin="0,-6,0,0"
-                  HeightRequest="160"
-                  ItemsSource="{Binding Images}">
-
-                  <CollectionView.ItemsLayout>
-                      <LinearItemsLayout
-                          Orientation="Horizontal"
-                          ItemSpacing="16" />
-                  </CollectionView.ItemsLayout>
-
-                  <CollectionView.ItemTemplate>
-                      <DataTemplate>
-                          <Image
-                              Source="{Binding .}"
-                              Aspect="AspectFill"
-                              HorizontalOptions="Fill"
-                              VerticalOptions="Fill"
-                              WidthRequest="160">
-                              <Image.Clip>
-                                  <RoundRectangleGeometry
-                                      Rect="0,0,160,160"
-                                      CornerRadius="16" />
-                              </Image.Clip>
-                          </Image>
-                      </DataTemplate>
-                  </CollectionView.ItemTemplate>
-
-              </CollectionView>-->
 
             </VerticalStackLayout>
 
