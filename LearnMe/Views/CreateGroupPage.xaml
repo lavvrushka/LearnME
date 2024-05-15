@@ -2,11 +2,281 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMe.Views.CreateGroupPage"
-             Title="CreateGroupPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+
+
+    <Grid
+      IgnoreSafeArea="{OnPlatform Android=True, iOS=False}">
+        <Grid
+       x:Name="MainContentGrid"
+       Padding="24,52,24,0"
+       IgnoreSafeArea="{OnPlatform Android=True, iOS=False}"
+       BackgroundColor="{StaticResource PageBackgroundColor}"
+       ColumnDefinitions="*,Auto"
+       RowDefinitions="Auto,*">
+
+            <ScrollView 
+                Grid.Row="1"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 HorizontalScrollBarVisibility="Never"
+                 VerticalScrollBarVisibility="Never">
+
+                <VerticalStackLayout>
+
+                <HorizontalStackLayout 
+                 Margin="0,0,0,10">
+
+                  <Label
+                     TextColor="White" 
+                     FontSize="32" 
+                     Text="Create group"
+                     VerticalOptions="CenterAndExpand"/>
+
+                <ImageButton
+                     x:Name="ColorButton"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Start"
+                     Source="palette.png"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     CornerRadius="20" 
+                     BackgroundColor="Transparent"
+                     Margin="150,0,0,10"
+                     Clicked="Color_Clicked"/>
+
+
+            </HorizontalStackLayout>
+
+            <Rectangle
+                  HorizontalOptions="Fill"
+                  HeightRequest="2"
+                  Stroke="Transparent"
+                  Fill="{StaticResource LightBorderColor}" />
+
+            <VerticalStackLayout>
+                <Entry
+                   x:Name="NameGroupEntry" 
+                   Placeholder="Subject,сhapter,section..." 
+                   HorizontalOptions="Start"
+                   WidthRequest="320"
+                   HeightRequest="40"
+                   Margin="10,10,0,0"/>
+
+                <Label 
+                   TextColor="White"
+                   Text="Name" 
+                   FontSize="16" 
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center"
+                   Margin="10,0,0,10"/>
+
+                <Entry
+                   x:Name="DescriptionGroupEntry" 
+                   Placeholder="What is this training module about?" 
+                   HorizontalOptions="Start"
+                   WidthRequest="320"
+                   HeightRequest="40"
+                   Margin="10,0,0,0"/>
+
+                <Label 
+                   TextColor="White"
+                   Text="Description" 
+                   FontSize="16" 
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center"
+                   Margin="10,0,0,10"/>
+
+            </VerticalStackLayout>
+            <Rectangle
+               HorizontalOptions="Fill"
+               HeightRequest="2"
+               Stroke="Transparent"
+               Fill="{StaticResource LightBorderColor}" />
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Frame HasShadow="False" Padding="0" Margin="30" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="330" HeightRequest="210" CornerRadius="20">
+                    <StackLayout Orientation="Vertical">
+
+                        <Entry
+                            x:Name="CardQuestion"
+                            Placeholder="Enter a question" 
+                            HorizontalOptions="Start"
+                            WidthRequest="300"
+                            HeightRequest="40"
+                            TextColor="White"
+                            Margin="15,10,10,0"
+                            FontSize="16"/>
+
+                        <Label 
+                            TextColor="White"
+                            Text="Question" 
+                            FontSize="16" 
+                            HorizontalOptions="Start" 
+                            VerticalOptions="Center"
+                            Margin="15,0,0,0"/>
+
+                        <Entry
+                            x:Name="CardAnswer"
+                            Placeholder="Enter answer" 
+                            HorizontalOptions="Start"
+                            WidthRequest="300"
+                            HeightRequest="40"
+                            TextColor="White"
+                            Margin="15,10,10,0"
+                            FontSize="16"/>
+
+                        <Label 
+                            TextColor="White"
+                            Text="Answer" 
+                            FontSize="16" 
+                            HorizontalOptions="Start" 
+                            VerticalOptions="Center"
+                            Margin="15,0,0,0"/>
+
+                        <HorizontalStackLayout>
+                            <Label 
+                                x:Name="CardCountLabel"
+                                TextColor="White"
+                                Text="Card: 0"
+                                FontSize="16" 
+                                HorizontalOptions="Start" 
+                                VerticalOptions="Center"
+                                Margin="15,0,200,0"/>
+                            <Button
+                                x:Name="CreateCardButton"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                WidthRequest="40"
+                                HeightRequest="40"
+                                CornerRadius="20"
+                                Text="+"
+                                FontSize="20"
+                                TextColor="White"
+                                BackgroundColor="#eb5757"
+                                Clicked="CreateCardButton_Clicked"/>
+                        </HorizontalStackLayout>
+
+                    </StackLayout>
+                </Frame>
+            </VerticalStackLayout>
+
+            <Button
+                x:Name="SaveGroup"
+                Style="{StaticResource ButtonStyle}"
+                Command="{Binding LoginPageCommand}"
+                Text="Save"
+                HorizontalOptions="Center"
+                Margin="0,0,0,6"
+                Clicked="SaveGroup_Clicked"/>
+
+
+
+        </VerticalStackLayout>
+
+          
+    </ScrollView>
+        <Border
+            Padding="16,0"
+            BackgroundColor="#393965"
+            Stroke="{StaticResource BorderColor}"
+            HorizontalOptions="Fill"
+            VerticalOptions="End"
+            Margin="0,0,0,5"
+            HeightRequest="90"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="45"/>
+            </Border.StrokeShape>
+
+            <Grid
+                HorizontalOptions="Fill"
+                VerticalOptions="Center"
+                RowDefinitions="Auto,Auto"
+                ColumnDefinitions="*,*,*,*"
+                RowSpacing="6">
+
+                <ImageButton
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    Source="imgexplore.png"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Clicked="ExplorePage_Clicked"/>
+
+
+                <Label
+                    Text="Explore"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource MenuLabelStyle}" />
+
+                <ImageButton
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    Source="main.png"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Clicked="MainPage_Clicked"/>
+
+
+                <Label
+                    Text="Home"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource MenuLabelStyle}" />
+
+                <ImageButton
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    Source="imgfavorite.png"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Clicked="CreateGroupPage_Clicked"/>
+
+
+                <Label
+                    Text="Create"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource MenuLabelStyle}" />
+
+                <ImageButton
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    Source="imgprofile.png"
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Clicked="ProfilePage_Clicked"/>
+
+
+                <Label
+                    Text="Profile"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource MenuLabelStyle}" />
+
+            </Grid>
+
+        </Border>
+    </Grid>
+    </Grid>
 </ContentPage>

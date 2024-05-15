@@ -2,14 +2,206 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMe.Views.ExplorePage"
+             xmlns:models="clr-namespace:LearnMe.Models"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutBehavior="Disabled">
 
 
-    <VerticalStackLayout>
-        
-        
-        
-    </VerticalStackLayout>
-    
+    <Grid
+  IgnoreSafeArea="{OnPlatform Android=True, iOS=False}">
+        <!-- Main Content -->
+        <Grid
+          x:Name="MainContentGrid"
+          Padding="24,52,24,0"
+          IgnoreSafeArea="{OnPlatform Android=True, iOS=False}"
+          BackgroundColor="{StaticResource PageBackgroundColor}"
+          ColumnDefinitions="*,Auto"
+          RowDefinitions="Auto,*">
+            
+            <VerticalStackLayout
+             Spacing="4"
+             Grid.Row="0"
+             Grid.Column="0"
+             VerticalOptions="Center">
+
+                <Label
+                 Style="{StaticResource PageHeaderStyle}"
+                 Text="Start learning languages "/>
+
+                <Label
+                 Style="{StaticResource PageHeaderSubtitleStyle}"
+                 Text="right now!"/>
+
+            </VerticalStackLayout>
+
+            <ScrollView             
+             Grid.Row="1"
+             Grid.Column="0"
+             Grid.ColumnSpan="2"
+             HorizontalScrollBarVisibility="Never"
+             VerticalScrollBarVisibility="Never"
+             Margin="0,32,-24,0">
+
+            <CollectionView
+              x:Name="lstAllGroups"
+              HeightRequest="610"
+              SelectionMode="Single"
+              SelectionChanged="Groups_SelectionChanged">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                      Orientation="Vertical"
+                      ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate
+                      x:DataType="models:ViewGroup">
+                        <Border
+                          VerticalOptions="Fill"
+                          WidthRequest="350"
+                          HeightRequest="200"
+                          StrokeThickness="0"
+                          Background = "{Binding Background}"
+                          Padding="20">
+
+
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="24"/>
+                            </Border.StrokeShape>
+
+                            <Grid
+                              RowDefinitions="*,Auto,Auto"
+                              RowSpacing="4">
+
+                                <ImageButton
+                                    WidthRequest="24"
+                                    HeightRequest="24"
+                                    Margin="20,-100,0,0"
+                                    Source="imgmenu.png"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="Transparent"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center" 
+                                    Clicked="GroupDelete_Clicked"/>
+
+
+                                <Label
+                                  Grid.Row="0"
+                                  Style="{StaticResource FeaturedGroupHeaderStyle}"
+                                  Text="{Binding Name}"
+                                  Margin="0,8,0,0"/>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+            </ScrollView>
+
+            <Border
+              Padding="16,0"
+              BackgroundColor="#393965"
+              Stroke="{StaticResource BorderColor}"
+              HorizontalOptions="Fill"
+              VerticalOptions="End"
+              Margin="0,0,0,5"
+              HeightRequest="90"
+              Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="2">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="45"/>
+                </Border.StrokeShape>
+
+                <Grid
+                  HorizontalOptions="Fill"
+                  VerticalOptions="Center"
+                  RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="*,*,*,*"
+                  RowSpacing="6">
+
+                    <ImageButton
+                      WidthRequest="40"
+                      HeightRequest="40"
+                      Source="imgexplore.png"
+                      Grid.Row="0"
+                      Grid.Column="0"
+                      HorizontalOptions="Center"
+                      BackgroundColor="Transparent"
+                      BorderColor="Transparent"/>
+
+
+                    <Label
+                      Text="Explore"
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      HorizontalOptions="Center"
+                      Style="{StaticResource MenuLabelStyle}" />
+
+                    <ImageButton
+                      WidthRequest="30"
+                      HeightRequest="30"
+                      Source="main.png"
+                      Grid.Row="0"
+                      Grid.Column="1"
+                      HorizontalOptions="Center"
+                      BackgroundColor="Transparent"
+                      BorderColor="Transparent"
+                      Clicked="MainPage_Clicked"/>
+
+
+                    <Label
+                      Text="Home"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      HorizontalOptions="Center"
+                      Style="{StaticResource MenuLabelStyle}" />
+
+                    <ImageButton
+                      WidthRequest="40"
+                      HeightRequest="40"
+                      Source="imgfavorite.png"
+                      Grid.Row="0"
+                      Grid.Column="2"
+                      HorizontalOptions="Center"
+                      BackgroundColor="Transparent"
+                      BorderColor="Transparent"
+                      Clicked="CreateGroupPage_Clicked"/>
+
+
+                    <Label
+                      Text="Create"
+                      Grid.Row="1"
+                      Grid.Column="2"
+                      HorizontalOptions="Center"
+                      Style="{StaticResource MenuLabelStyle}" />
+
+                    <ImageButton
+                      WidthRequest="40"
+                      HeightRequest="40"
+                      Source="imgprofile.png"
+                      Grid.Row="0"
+                      Grid.Column="3"
+                      HorizontalOptions="Center"
+                      BackgroundColor="Transparent"
+                      BorderColor="Transparent"
+                      Clicked="ProfilePage_Clicked"/>
+
+
+                    <Label
+                      Text="Profile"
+                      Grid.Row="1"
+                      Grid.Column="3"
+                      HorizontalOptions="Center"
+                      Style="{StaticResource MenuLabelStyle}" />
+
+                </Grid>
+
+            </Border>
+        </Grid>
+    </Grid>
+
 </ContentPage>

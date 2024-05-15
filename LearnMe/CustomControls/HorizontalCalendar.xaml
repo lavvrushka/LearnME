@@ -12,18 +12,18 @@
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Models:AchievementsDatePicker">
-                <Frame WidthRequest="80" Padding="15" BackgroundColor="White" >
+                <Frame WidthRequest="80" Padding="15" BackgroundColor="{Binding BackgroundColor}">
                     <VerticalStackLayout Margin="10">
                         <Label
-                            Text="{Binding Date, StringFormat='{0:ddd}'}"
-                            FontSize="18"
-                            HorizontalTextAlignment="Center"
-                            />
+                Text="{Binding Date, StringFormat='{0:ddd}'}"
+                FontSize="18"
+                HorizontalTextAlignment="Center"
+                />
                         <Label
-                            Text="{Binding Date, StringFormat='{0:d }'}"
-                            FontSize="24"
-                            FontAttributes="Bold"
-                            HorizontalTextAlignment="Center"/>
+                Text="{Binding Date, StringFormat='{0:d }'}"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"/>
                     </VerticalStackLayout>
                 </Frame>
             </DataTemplate>

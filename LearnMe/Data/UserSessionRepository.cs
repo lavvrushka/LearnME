@@ -33,6 +33,7 @@ namespace LearnMe.Data
         {
             return _dbContext.Sessions.SingleOrDefault(s => s.Token == token);
         }
+
         public UserSession GetSessionByUserId(int UserId)
         {
             return _dbContext.Sessions.SingleOrDefault(s => s.UserId == UserId);
@@ -42,6 +43,11 @@ namespace LearnMe.Data
         {
             _dbContext.Sessions.Remove(GetSessionByToken(token));
             _dbContext.SaveChanges();
+        }
+
+        public UserSession GetLastSession()
+        {
+            return _dbContext.Sessions.ToList<UserSession>()[0];
         }
     }
 }

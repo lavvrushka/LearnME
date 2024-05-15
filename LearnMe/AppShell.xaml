@@ -22,8 +22,12 @@
     <ShellContent  Route="user_settings" ContentTemplate="{DataTemplate views:UserSettingsPage}" />
     <ShellContent  Route="achievements" ContentTemplate="{DataTemplate views:AchievementsPage}" />
     <ShellContent  Route="avatar" ContentTemplate="{DataTemplate views:AvatarPage}" />
+    <ShellContent  Route="group_details" ContentTemplate="{DataTemplate views:GroupDetailsPage}" />
 
 
+    <ShellContent  Route="blitz" ContentTemplate="{DataTemplate views:BlitzPage}" />
+    <ShellContent  Route="memorization" ContentTemplate="{DataTemplate views:AchievementsPage}" />
+    <ShellContent  Route="flip" ContentTemplate="{DataTemplate views:AvatarPage}" />
 
-
+    
 </Shell>

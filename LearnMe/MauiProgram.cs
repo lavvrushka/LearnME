@@ -3,6 +3,7 @@ using LearnMe.Data;
 using LearnMe.Service;
 using LearnMe.ViewModels;
 using LearnMe.Views;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace LearnMe
@@ -23,10 +24,14 @@ namespace LearnMe
                     fonts.AddFont("Montserrat-SemiBold.ttf", "MediumFont");
                     fonts.AddFont("Montserrat-Bold.ttf", "BoldFont");
                 });
-            builder.Services.AddSingleton<DbContext>();
+
+            builder.Services.AddDbContext<LearnMe.Data.DbContext>();
 
             builder.Services.AddSingleton<UserRepository>();
+            builder.Services.AddSingleton<GroupRepository>();
+            builder.Services.AddSingleton<CardRepository>();
             builder.Services.AddSingleton<UserSessionRepository>();
+            builder.Services.AddTransient<DbContextOptions<LearnMe.Data.DbContext>>();
       
             builder.Services.AddSingleton<AuthenticationService>();
 
@@ -41,6 +46,10 @@ namespace LearnMe
 
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddTransient<CreateCardViewModel>();
+            builder.Services.AddTransient<CreateGroupViewModel>();
+            builder.Services.AddTransient<CardService>();
+            builder.Services.AddTransient<GroupsService>();
 
             builder.Services.AddSingleton<ExploreViewModel>();
             builder.Services.AddSingleton<ExplorePage>();
@@ -55,6 +64,11 @@ namespace LearnMe
             builder.Services.AddSingleton<AchievementsPage>();
             builder.Services.AddSingleton<UserSettingsPage>();
             builder.Services.AddSingleton<AvatarPage>();
+
+            //var dbContext =new DbContext();
+            //dbContext.Database.EnsureCreated();
+            //dbContext.Dispose();
+
 
 #if DEBUG
             builder.Logging.AddDebug();

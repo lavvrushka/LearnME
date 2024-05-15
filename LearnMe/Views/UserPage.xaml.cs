@@ -46,11 +46,7 @@ public partial class UserPage : ContentPage
         currentIndex = (currentIndex + 1) % imagePaths.Length;
         AchievementsButton.Source = imagePaths[currentIndex];
     }
-    async void BackButton_Clicked(System.Object sender, System.EventArgs e)
-    {
-        Shell.Current.GoToAsync("//main");
-    }
-
+  
     async void Settings_Clicked(System.Object sender, System.EventArgs e)
     {
         Shell.Current.GoToAsync("//user_settings");
@@ -81,5 +77,21 @@ public partial class UserPage : ContentPage
         };
         await Navigation.PushAsync(avatarPage);
     }
+    private void ExplorePage_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//explore");
+    }
 
+    private void MainPage_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//main");
+    }
+    private void CreateGroupPage_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//create_group");
+    }
+    private void ProfilePage_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//user");
+    }
 }

@@ -3,12 +3,80 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMe.Views.UserGroupsPage"
              Shell.NavBarIsVisible="False"
+             xmlns:models="clr-namespace:LearnMe.Models"
              Shell.FlyoutBehavior="Disabled">
 
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <HorizontalStackLayout Margin="30">
+                <ImageButton
+                    WidthRequest="24"
+                    HeightRequest="24"
+                    Source="imgback.png"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Clicked="BackButton_Clicked" />
+            </HorizontalStackLayout>
+
+            <CollectionView
+              x:Name="YouGroups"
+              HeightRequest="650"
+              SelectionMode="Single"
+              SelectionChanged="Groups_SelectionChanged">   
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                      Orientation="Vertical"
+                      ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="models:ViewGroup">
+                        <Border
+                          VerticalOptions="Fill"
+                          WidthRequest="350"
+                          HeightRequest="200"
+                          StrokeThickness="0"
+                          Background = "{Binding Background}"
+                          Padding="20">
+
+
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="24"/>
+                            </Border.StrokeShape>
+
+                            <Grid
+                              RowDefinitions="*,Auto,Auto"
+                              RowSpacing="4">
+
+                                <ImageButton
+                                    WidthRequest="24"
+                                    HeightRequest="24"
+                                    Margin="20,-100,0,0"
+                                    Source="imgmenu.png"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="Transparent"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center" 
+                                    Clicked="GroupDelete_Clicked"/>
+
+
+                                <Label
+                                  Grid.Row="1"
+                                  Style="{StaticResource FeaturedGroupHeaderStyle}"
+                                  Text="{Binding Name}"
+                                  Margin="0,8,0,0"/>
+
+                            </Grid>
+
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

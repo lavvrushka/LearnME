@@ -33,7 +33,7 @@
                 Text="Personal information"
                 VerticalOptions="CenterAndExpand"/>
 
-            <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="270" >
+            <Frame HasShadow="False" Padding="0" Margin="0,0,0,10" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="270" >
                 <StackLayout>
                     <HorizontalStackLayout HorizontalOptions="Center">
                         <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50">
@@ -146,7 +146,11 @@
                 </StackLayout>
             </Frame>
 
-           
+            <Rectangle
+       HorizontalOptions="Fill"
+       HeightRequest="2"
+       Stroke="Transparent"
+       Fill="{StaticResource LightBorderColor}" />
 
 
             <Label
@@ -215,7 +219,7 @@
               VerticalOptions="CenterAndExpand"/>
 
             <HorizontalStackLayout HorizontalOptions="Center">
-                <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50">
+                <Frame HasShadow="False" Padding="0" Margin="0,0,0,10" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50">
                     <StackLayout Orientation="Horizontal" Spacing="105">
                         <Label 
                           HorizontalOptions="Center"
@@ -228,8 +232,6 @@
                     </StackLayout>
                 </Frame>
             </HorizontalStackLayout>
-          
-            
 
         </VerticalStackLayout>
     </ScrollView>
