@@ -17,6 +17,12 @@
 - **Дополнение "RoadMap":** Для студентов и профессионалов, которые готовят курсовые или исследовательские работы, "RoadMap" предоставляет структурированный подход к подготовке и планированию материала.
 
 ## Краткий обзор:
+
+
+https://github.com/user-attachments/assets/a89773cc-69f0-4904-ada1-7fd698f2d176
+
+
+
 ![Логотип "LernMe"](preview/imagemain.png )
 ![Логотип "LernMe"](preview/imageset.png)
 ![Логотип "LernMe"](preview/imageuser.png)
