@@ -2,86 +2,176 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearnMe.Views.GroupDetailsPage"
+             xmlns:models="clr-namespace:LearnMe.Models"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutBehavior="Disabled">
 
 
-    <Grid
-      Margin="24,52,24,0"
-      IgnoreSafeArea="{OnPlatform Android=True, iOS=False}"
-      ColumnDefinitions="*,*"
-      RowDefinitions="Auto,*">
-
-        <!-- Header Icons -->
-        <ImageButton
-          WidthRequest="24"
-          HeightRequest="24"
-          Source="imgback.png"
-          Grid.Row="0"
-          Grid.Column="0"
-          HorizontalOptions="Start"
-          VerticalOptions="Center"
-          Clicked="BackButton_Clicked" />
-
-        <ImageButton
-          WidthRequest="24"
-          HeightRequest="24"
-          Source="imgmenu.png"
-          Grid.Row="0"
-          Grid.Column="1"
-          HorizontalOptions="End"
-          VerticalOptions="Center" />
-
 
         <!-- Main Content ScrollView -->
-        <ScrollView
-          Grid.Row="1"
-          Grid.Column="0"
-          Grid.ColumnSpan="2"
-          HorizontalScrollBarVisibility="Never"
-          VerticalScrollBarVisibility="Never"
-          Margin="0,16,0,0">
+    <ScrollView>
+        <VerticalStackLayout>
+            <HorizontalStackLayout Margin="30">
+                <ImageButton
+                   WidthRequest="24"
+                   HeightRequest="24"
+                   Source="imgback.png"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Clicked="BackButton_Clicked" />
 
-            <VerticalStackLayout
-              Spacing="18">
+                <ImageButton
+                   WidthRequest="24"
+                   HeightRequest="24"
+                   Margin="320,0,0,0"
+                   Source="imgmenu.png"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center" 
+                   Clicked="GroupChange_Clicked"/>
+            </HorizontalStackLayout>
 
-                <!-- Group Image -->
-                <Image
-                  Source="{Binding HeroImage}"
-                  Aspect="AspectFit"
-                  HorizontalOptions="Fill"
-                  HeightRequest="240"
-                  Margin="24,0" />
+            <VerticalStackLayout>
 
-                <!-- Group Name -->
+                <!--<Rectangle
+                    HorizontalOptions="Fill"
+                    HeightRequest="2"
+                    Stroke="Transparent"
+                    Fill="{StaticResource LightBorderColor}" />-->
+
                 <Label
-                  Style="{StaticResource GroupHeaderStyle}"
-                  Text="{Binding Name}"
-                  Margin="0,-24,0,0"/>
+                   Style="{StaticResource GroupHeaderStyle}"
+                   Text="{Binding Name}"
+                   Margin="30,0,0,0"/>
 
-                <!-- Divider -->
-                <Rectangle
-                  HorizontalOptions="Fill"
-                  HeightRequest="2"
-                  Stroke="Transparent"
-                  Fill="{StaticResource LightBorderColor}" />
-
-                <!-- Group Info -->
                 <Label
-                  Style="{StaticResource GroupDetailsTextStyle}"
-                  LineBreakMode="WordWrap"
-                  Text="{Binding Description}" />
+                   Style="{StaticResource GroupDetailsTextStyle}"
+                   LineBreakMode="WordWrap"
+                   Margin="30,0,0,0"
+                   Text="{Binding Description}" />
 
-
-                <!-- Divider -->
                 <Rectangle
-                  HorizontalOptions="Fill"
-                  HeightRequest="2"
-                  Stroke="Transparent"
-                  Fill="{StaticResource LightBorderColor}" />
+                   HorizontalOptions="Fill"
+                   HeightRequest="2"
+                   Stroke="Transparent"
+                   Fill="{StaticResource LightBorderColor}" />
 
+                <Button 
+                   Command="{Binding AllGroupsCommand}" 
+                   Text="🗂️ Flip Cards                                  >" 
+                   Margin="0,40,0,0" 
+                   BackgroundColor="#2E3756" 
+                   BorderColor="#2E3756" 
+                   TextColor="White" 
+                   FontSize="20" 
+                   WidthRequest="360"
+                   HeightRequest="60"
+                   CornerRadius="10"
+                   VerticalOptions="Center"
+                   Clicked="Flip_Cards_Clicked"/>
+
+                <Button 
+                   Command="{Binding SettingsCommand}" 
+                   Text="🔄 Memorization                           >" 
+                   Margin="5" 
+                   BackgroundColor="#2E3756" 
+                   BorderColor="#2E3756" 
+                   TextColor="White" 
+                   FontFamily="MediumFont"
+                   FontSize="20" 
+                   WidthRequest="360"
+                   HeightRequest="60"
+                   CornerRadius="10"
+                   VerticalOptions="CenterAndExpand"
+                   Clicked="Memorization_Clicked"/>
+
+                <Button 
+                   Command="{Binding SettingsCommand}"  
+                   Text="⏳ Blitz                                           >" 
+                   Margin="0" 
+                   BackgroundColor="#2E3756" 
+                   BorderColor="#2E3756" 
+                   TextColor="White" 
+                   FontFamily="MediumFont"
+                   FontSize="20" 
+                   WidthRequest="360"
+                   HeightRequest="60"
+                   CornerRadius="10"
+                   VerticalOptions="CenterAndExpand"
+                   Clicked="Blitz_Clicked"/>
+
+                <!--Your cards-->
+                <HorizontalStackLayout>
+                    <Label
+                      Style="{StaticResource PageSubHeaderStyle}"
+                      Margin="30,100,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Cards   " />
+                                <Span Text="→" FontSize="20" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Button
+                      x:Name="CreateCardButton"
+                      VerticalOptions="Center"
+                      HorizontalOptions="Center"
+                      WidthRequest="80"
+                      HeightRequest="40"
+                      CornerRadius="10"
+                      Text="+ Add"
+                      TextColor="White" 
+                      FontSize="20"
+                      Margin="210,95,0,0"
+                      BackgroundColor="Transparent"
+                      BorderColor="Transparent"
+                      Clicked="CreateCardButton_Clicked"/>
+                </HorizontalStackLayout>
+
+                <CollectionView
+                  x:Name="Cards"
+                  HeightRequest="150"
+                  SelectionMode="Single"
+                  Margin="20,10,0,0">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout
+                          Orientation="Horizontal"
+                          ItemSpacing="16" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Card">
+                            <Border
+                                VerticalOptions="Fill"
+                                WidthRequest="200"
+                                StrokeThickness="0"
+                                Padding="20"
+                                BackgroundColor="#2E3756" >
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="24"/>
+                                </Border.StrokeShape>
+                                
+                                <VerticalStackLayout>
+                                    <Label
+                                        Style="{StaticResource FeaturedGroupHeaderStyle}"
+                                        Text="{Binding Question}"
+                                        Margin="10,0,0,0"/>
+                                    <Label
+                                        Style="{StaticResource FeaturedGroupHeaderStyle}"
+                                        Text="{Binding Answer}"
+                                        Margin="10,20,0,0"/>
+                                </VerticalStackLayout>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        NumberOfTapsRequired="2"
+                                        Tapped="OnCardDoubleTapped"/>
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </VerticalStackLayout>
-
-        </ScrollView>
-    </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

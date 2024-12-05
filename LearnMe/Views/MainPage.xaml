@@ -4,6 +4,7 @@
              x:Class="LearnMe.Views.MainPage"
              xmlns:models="clr-namespace:LearnMe.Models"
              Shell.NavBarIsVisible="False"
+             xmlns:customControls="clr-namespace:LearnMe.CustomControls"
              Shell.FlyoutBehavior="Disabled">
 
     <Grid
@@ -42,20 +43,20 @@
              VerticalOptions="Center"
              HorizontalOptions="End"
              Stroke="{StaticResource LightBorderColor}"
-             StrokeThickness="6"
+             StrokeThickness="3"
              Grid.Row="0"
              Grid.Column="1">
 
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="28"/>
-                </Border.StrokeShape>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="28"/>
+                    </Border.StrokeShape>
 
                 <Image
                  VerticalOptions="Center"
                  HorizontalOptions="Center"
                  WidthRequest="50"
                  HeightRequest="50"
-                 Source="profilepic.jpeg">
+                 Source="two.png">
                     <Image.Clip>
                         <EllipseGeometry
                          Center="25,25"
@@ -102,7 +103,7 @@
 
 
 
-                    <!--Most Popular Section-->
+                    <!--Your groups-->
                     <Label
                      Style="{StaticResource PageSubHeaderStyle}"
                      Margin="0,12,0,0">
@@ -115,7 +116,7 @@
                     </Label>
 
                     <CollectionView
-                     x:Name="lstPopularGroups"
+                     x:Name="YouGroups"
                      HeightRequest="280"
                      SelectionMode="Single"
                      SelectionChanged="Groups_SelectionChanged">
@@ -125,16 +126,18 @@
                              Orientation="Horizontal"
                              ItemSpacing="16" />
                         </CollectionView.ItemsLayout>
- 
+
                         <CollectionView.ItemTemplate>
                             <DataTemplate
-                             x:DataType="models:Group">
+                             x:DataType="models:ViewGroup">
                                 <Border
                                  VerticalOptions="Fill"
                                  WidthRequest="220"
                                  StrokeThickness="0"
-                                 Background="{Binding Background}"
+                                 Background = "{Binding Background}"
                                  Padding="20">
+
+
 
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="24"/>
@@ -144,13 +147,17 @@
                                      RowDefinitions="*,Auto,Auto"
                                      RowSpacing="4">
 
-                                        <Image
-                                         Grid.Row="0"
-                                         Source="{Binding HeroImage}"
-                                         Rotation="-30"
-                                         Aspect="AspectFit"
-                                         VerticalOptions="Fill"
-                                         HorizontalOptions="Fill"/>
+                                        <ImageButton
+                                           WidthRequest="24"
+                                           HeightRequest="24"
+                                           Margin="20,-190,0,0"
+                                           Source="imgmenu.png"
+                                           BackgroundColor="Transparent"
+                                           BorderColor="Transparent"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Center" 
+                                           Clicked="GroupDelete_Clicked"/>
+
 
                                         <Label
                                          Grid.Row="1"
@@ -173,63 +180,13 @@
                      Margin="0,12,0,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="You may also like   "  />
+                                <Span Text="Your current streak   "  />
                                 <Span Text="→" FontSize="20" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
 
-                    <CollectionView
-                     x:Name="lstAllGroups"
-                     HeightRequest="160"
-                     SelectionMode="Single"
-                     SelectionChanged="Groups_SelectionChanged">
-
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout
-                             Orientation="Horizontal"
-                             ItemSpacing="16" />
-                        </CollectionView.ItemsLayout>
-
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate
-                             x:DataType="models:Group">
-                                <Border
-                                 VerticalOptions="Fill"
-                                 WidthRequest="140"
-                                 StrokeThickness="0"
-                                 Background="{Binding Background}"
-                                 Padding="16">
-
-                                    <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="16"/>
-                                    </Border.StrokeShape>
-
-                                    <Grid
-                                     RowDefinitions="*,Auto,Auto"
-                                     RowSpacing="4">
-
-                                        <Image
-                                         Grid.Row="0"
-                                         Source="{Binding HeroImage}"
-                                         Rotation="-30"
-                                         Aspect="AspectFit"                                        
-                                         VerticalOptions="Fill"
-                                         HorizontalOptions="Fill"/>
-
-                                        <Label
-                                         Grid.Row="1"
-                                         Style="{StaticResource AllGroupHeaderStyle}"
-                                         Text="{Binding Name}"
-                                         Margin="0,4,0,0"/>
-
-                                    </Grid>
-
-                                </Border>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-
-                    </CollectionView>
+                    <customControls:HorizontalCalendar/>
 
                 </VerticalStackLayout>
 
@@ -242,7 +199,7 @@
              Stroke="{StaticResource BorderColor}"
              HorizontalOptions="Fill"
              VerticalOptions="End"
-             Margin="0,0,0,20"
+             Margin="0,0,0,5"
              HeightRequest="90"
              Grid.Row="1"
              Grid.Column="0"
@@ -255,20 +212,21 @@
                  HorizontalOptions="Fill"
                  VerticalOptions="Center"
                  RowDefinitions="Auto,Auto"
-                 ColumnDefinitions="*,*,*"
+                 ColumnDefinitions="*,*,*,*"
                  RowSpacing="6">
 
                     <ImageButton
-                     WidthRequest="30"
-                     HeightRequest="30"
+                     WidthRequest="40"
+                     HeightRequest="40"
                      Source="imgexplore.png"
                      Grid.Row="0"
                      Grid.Column="0"
                      HorizontalOptions="Center"
                      BackgroundColor="Transparent"
+                     BorderColor="Transparent"
                      Clicked="ExplorePage_Clicked"/>
-                     <!--Command="{Binding ExploreCommand}"/>-->
-                    
+
+
                     <Label
                      Text="Explore"
                      Grid.Row="1"
@@ -279,47 +237,63 @@
                     <ImageButton
                      WidthRequest="30"
                      HeightRequest="30"
-                     Source="imgfavorite.png"
+                     Source="main.png"
                      Grid.Row="0"
                      Grid.Column="1"
                      HorizontalOptions="Center"
                      BackgroundColor="Transparent"
-                     Clicked="CreateGroupPage_Clicked"/>
-                     <!--Command="{Binding CreateCommand}"/>-->
-                    
+                     BorderColor="Transparent"
+                     Clicked="MainPage_Clicked"/>
+
+
                     <Label
-                     Text="Create"
+                     Text="Home"
                      Grid.Row="1"
                      Grid.Column="1"
                      HorizontalOptions="Center"
                      Style="{StaticResource MenuLabelStyle}" />
 
                     <ImageButton
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     Source="imgprofile.png"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     Source="imgfavorite.png"
                      Grid.Row="0"
                      Grid.Column="2"
                      HorizontalOptions="Center"
                      BackgroundColor="Transparent"
+                     BorderColor="Transparent"
+                     Clicked="CreatePage_Clicked"/>
+
+
+                    <Label
+                     Text="Create"
+                     Grid.Row="1"
+                     Grid.Column="2"
+                     HorizontalOptions="Center"
+                     Style="{StaticResource MenuLabelStyle}" />
+
+                    <ImageButton
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     Source="imgprofile.png"
+                     Grid.Row="0"
+                     Grid.Column="3"
+                     HorizontalOptions="Center"
+                     BackgroundColor="Transparent"
+                     BorderColor="Transparent"
                      Clicked="ProfilePage_Clicked"/>
-                    <!--Command="{Binding ProfileCommand}"/>-->
-                    
+
+
                     <Label
                      Text="Profile"
                      Grid.Row="1"
-                     Grid.Column="2"
+                     Grid.Column="3"
                      HorizontalOptions="Center"
                      Style="{StaticResource MenuLabelStyle}" />
 
                 </Grid>
 
             </Border>
-
-
         </Grid>
-
     </Grid>
-
-
 </ContentPage>

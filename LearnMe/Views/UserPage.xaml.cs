@@ -1,17 +1,37 @@
 using LearnMe.ViewModels;
+using LearnMe.Data;
+using LearnMe.Models;
 namespace LearnMe.Views;
+
 
 public partial class UserPage : ContentPage
 {
+    private readonly UserViewModel _userViewModel;
     private string[] imagePaths = { "achone.jpg", "achtri.jpg", "achchet.jpg", "achpiat.jpg", "achshest.jpg", "achdva.jpg" }; // Пути к вашим изображениям
     private int currentIndex = 0;
     private readonly TimeSpan interval = TimeSpan.FromSeconds(10); // Интервал в секундах между сменой изображений
     private bool isTimerRunning = false;
 
-    public UserPage(UserViewModel viewModel)
-	{
-		InitializeComponent();
-        BindingContext = viewModel;
+    public UserPage(UserViewModel userViewModel)
+    {
+        InitializeComponent();
+        _userViewModel = userViewModel;
+        BindingContext = this;
+        CurrentUser = Utils.AppContext.CurrentUser;
+    }
+
+    private User currentUser;
+    public User CurrentUser
+    {
+        get => currentUser;
+        set
+        {
+            if (currentUser != value)
+            {
+                currentUser = value;
+                OnPropertyChanged();
+            }
+        }
     }
 
     protected override void OnAppearing()
@@ -46,40 +66,56 @@ public partial class UserPage : ContentPage
         currentIndex = (currentIndex + 1) % imagePaths.Length;
         AchievementsButton.Source = imagePaths[currentIndex];
     }
-    async void BackButton_Clicked(System.Object sender, System.EventArgs e)
-    {
-        Shell.Current.GoToAsync("//main");
-    }
 
     async void Settings_Clicked(System.Object sender, System.EventArgs e)
     {
-        Shell.Current.GoToAsync("//user_settings");
+        await Shell.Current.GoToAsync("//user_settings");
     }
+
     async void Groups_Clicked(System.Object sender, System.EventArgs e)
     {
-        Shell.Current.GoToAsync("//user_groups");
+        await Shell.Current.GoToAsync("//user_events");
     }
 
     async void Achievements_Clicked(System.Object sender, System.EventArgs e)
     {
-        Shell.Current.GoToAsync("//achievements");
+        await Shell.Current.GoToAsync("//achievements");
     }
+
     async void SeeAll_Clicked(System.Object sender, System.EventArgs e)
     {
-        Shell.Current.GoToAsync("//achievements");
+        await Shell.Current.GoToAsync("//auth_signup");
     }
 
     private async void Avatar_Clicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//avatar");
-
-        var avatarPage = new AvatarPage();
+        var avatarPage = new AvatarPage(_userViewModel);
         avatarPage.AvatarSelected += (s, selectedImage) =>
         {
             // Установка выбранной картинки в кнопку AvatarButton
-            AvatarButton.Source = selectedImage;
+            CurrentUser.Avatar = selectedImage;
         };
         await Navigation.PushAsync(avatarPage);
     }
 
+    private void ExplorePage_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//explore");
+    }
+
+    private void MainPage_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//main");
+    }
+
+    private void CreatePage_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//create");
+    }
+
+    private void ProfilePage_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//user");
+    }
 }
+

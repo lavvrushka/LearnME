@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LearnMe.Models
 {
-    [Table("Card")]
+    [Table("Cards")]
     public class Card
     {
         [PrimaryKey, AutoIncrement]

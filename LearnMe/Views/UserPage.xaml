@@ -4,32 +4,38 @@
              x:Class="LearnMe.Views.UserPage"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutBehavior="Disabled">
-
-
-    <ScrollView>
-        <VerticalStackLayout>
+    <Grid
+    IgnoreSafeArea="{OnPlatform Android=True, iOS=False}">
+        <Grid
+         x:Name="MainContentGrid"
+         Padding="24,52,24,0"
+         IgnoreSafeArea="{OnPlatform Android=True, iOS=False}"
+         BackgroundColor="{StaticResource PageBackgroundColor}"
+         ColumnDefinitions="*,Auto"
+         RowDefinitions="Auto,*">
+            <ScrollView 
+                Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  HorizontalScrollBarVisibility="Never"
+                  VerticalScrollBarVisibility="Never">  
+                <VerticalStackLayout>
             <!-- Profile Pic -->
-            <VerticalStackLayout Margin="30">
-                <ImageButton
-                   WidthRequest="24"
-                   HeightRequest="24"
-                   Source="imgback.png"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center"
-                   Clicked="BackButton_Clicked" />
+                <VerticalStackLayout Margin="10">
+                        <ImageButton
+                            x:Name="AvatarButton"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            WidthRequest="80"
+                            HeightRequest="90"
+                            CornerRadius="30"
+                            BackgroundColor="Transparent"
+                            Source="cat.png"
+                            
+                            Clicked="Avatar_Clicked"/>
+                        <!--Source="{Binding CurrentUser.Avatar}"-->
 
-
-
-                <ImageButton
-                    x:Name="AvatarButton"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    WidthRequest="80"
-                    HeightRequest="80"
-                    CornerRadius="40" 
-                    Clicked="Avatar_Clicked"/>
-
-                <Label
+                        <Label
                    Margin="10"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
@@ -43,7 +49,7 @@
             <VerticalStackLayout>
                 <Button 
                     Command="{Binding AllGroupsCommand}" 
-                    Text="📚 Your groups                           >" 
+                    Text="🎯 Your roadmap                        >" 
                     Margin="10" 
                     BackgroundColor="Transparent" 
                     BorderColor="#2E3756" 
@@ -71,7 +77,7 @@
                     Clicked="Settings_Clicked"/>
             </VerticalStackLayout>
 
-            <VerticalStackLayout Margin="80">
+            <VerticalStackLayout Margin="50">
                 <HorizontalStackLayout Spacing="80" Padding="5">
                     <Label
                            TextColor="White" 
@@ -104,4 +110,107 @@
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
+
+    <Border
+      Padding="16,0"
+      BackgroundColor="#393965"
+      Stroke="{StaticResource BorderColor}"
+      HorizontalOptions="Fill"
+      VerticalOptions="End"
+      Margin="0,0,0,5"
+      HeightRequest="90"
+      Grid.Row="1"
+      Grid.Column="0"
+      Grid.ColumnSpan="2">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="45"/>
+        </Border.StrokeShape>
+
+        <Grid
+          HorizontalOptions="Fill"
+          VerticalOptions="Center"
+          RowDefinitions="Auto,Auto"
+          ColumnDefinitions="*,*,*,*"
+          RowSpacing="6">
+
+            <ImageButton
+              WidthRequest="40"
+              HeightRequest="40"
+              Source="imgexplore.png"
+              Grid.Row="0"
+              Grid.Column="0"
+              HorizontalOptions="Center"
+              BackgroundColor="Transparent"
+              BorderColor="Transparent"/>
+
+
+            <Label
+              Text="Explore"
+              Grid.Row="1"
+              Grid.Column="0"
+              HorizontalOptions="Center"
+              Style="{StaticResource MenuLabelStyle}" />
+
+            <ImageButton
+              WidthRequest="30"
+              HeightRequest="30"
+              Source="main.png"
+              Grid.Row="0"
+              Grid.Column="1"
+              HorizontalOptions="Center"
+              BackgroundColor="Transparent"
+              BorderColor="Transparent"
+              Clicked="MainPage_Clicked"/>
+
+
+            <Label
+              Text="Home"
+              Grid.Row="1"
+              Grid.Column="1"
+              HorizontalOptions="Center"
+              Style="{StaticResource MenuLabelStyle}" />
+
+            <ImageButton
+              WidthRequest="40"
+              HeightRequest="40"
+              Source="imgfavorite.png"
+              Grid.Row="0"
+              Grid.Column="2"
+              HorizontalOptions="Center"
+              BackgroundColor="Transparent"
+              BorderColor="Transparent"
+              Clicked="CreatePage_Clicked"/>
+
+
+            <Label
+              Text="Create"
+              Grid.Row="1"
+              Grid.Column="2"
+              HorizontalOptions="Center"
+              Style="{StaticResource MenuLabelStyle}" />
+
+            <ImageButton
+              WidthRequest="40"
+              HeightRequest="40"
+              Source="imgprofile.png"
+              Grid.Row="0"
+              Grid.Column="3"
+              HorizontalOptions="Center"
+              BackgroundColor="Transparent"
+              BorderColor="Transparent"
+              Clicked="ProfilePage_Clicked"/>
+
+
+            <Label
+              Text="Profile"
+              Grid.Row="1"
+              Grid.Column="3"
+              HorizontalOptions="Center"
+              Style="{StaticResource MenuLabelStyle}" />
+
+        </Grid>
+
+    </Border>
+    </Grid>
+    </Grid>
 </ContentPage>

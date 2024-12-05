@@ -6,46 +6,55 @@ using System.Threading.Tasks;
 using LearnMe.Models;
 using Microsoft.EntityFrameworkCore;
 using SQLite;
+using LearnMe.Utils;
 
 namespace LearnMe.Data
 {
-    public class DbContext: Microsoft.EntityFrameworkCore.DbContext
+    public class DbContext : Microsoft.EntityFrameworkCore.DbContext
     {
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=LearnMeDatabase.db");
+            //optionsBuilder.UseSqlite("Filename=LearnMeDatabase.db");
+            string connectionDb = $"Filename={PathDb.GetPath("learnme.db")}";
+            optionsBuilder.UseSqlite(connectionDb);
         }
-        public DbContext()
+        public DbContext(DbContextOptions<DbContext> options) : base(options) 
         {
             Database.EnsureCreated();
 
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
 
-            //var user = Users.FirstOrDefault(c => c.Username == "admin");
-            //User user = null;
-            //if (user == null)
-            //{
-            //    user = new User
-            //    {
-            //        Username = "admin",
-            //        Password = "0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c",
-            //        Email = "admin@admin.com",
-            //        Role = Role.ADMIN
-            //    };
-            //    var dbItem = Users.Add(user);
-            //    this.SaveChanges();
-            //}
-            var admin = new User
+
+            modelBuilder.Entity<User>().HasData(new User
             {
+                Id = 1,
                 Username = "admin",
                 Password = "0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c",
                 Email = "forinovegor@gmail.com",
+                Avatar = "default_avatar_path",
                 Role = Role.ADMIN
-            };
-            Users.Add(admin);
-            SaveChanges();
+            });
+
+            modelBuilder.Entity<Group>().ToTable("Groups");
+            modelBuilder.Entity<UserSession>().ToTable("Sessions");
+            modelBuilder.Entity<Card>().ToTable("Cards");
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Event>().ToTable("Events");
+            modelBuilder.Entity<EventGroup>().ToTable("EventGroups");
+
         }
+
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserSession> Sessions { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Card> Cards { get; set; }
+
+        public DbSet<Event> Events { get; set; }
+
+        public DbSet<EventGroup> EventGroups { get; set; }
     }
 }

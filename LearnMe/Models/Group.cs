@@ -1,13 +1,12 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace LearnMe.Models
 {
-    [Table("Group")]
+    [Table("Groups")]
     public class Group
     {
         [PrimaryKey, AutoIncrement]
@@ -22,30 +21,40 @@ namespace LearnMe.Models
         [Column("UserId")]
         public int UserId { get; set; }
 
+        public List<EventGroup> EventGroups { get; set; }
+
+        public Group()
+        {
+            EventGroups = new List<EventGroup>();
+        }
+
+        [Column("AccentColorStartString")]
+        public string AccentColorStartString { get; set; }
+
+        [Column("AccentColorEndString")]
+        public string AccentColorEndString { get; set; }
 
         
-        public Color AccentColorStart { get; set; }
-        public Color AccentColorEnd { get; set; }
-        public List<string> Images { get; set; }
-        public string HeroImage { get; set; }
+        
 
 
-        // Background
-        public Brush Background
+        public Group(int id, string name, string description, int userId, string accentColorStartString, string accentColorEndString)
         {
-            get
-            {
-                var gradientStops = new GradientStopCollection();
-                gradientStops.Add(new GradientStop(AccentColorStart, 0.0f));
-                gradientStops.Add(new GradientStop(AccentColorEnd, 1.0f));
+            Id = id;
+            Name = name;
+            Description = description;
+            UserId = userId;
+            AccentColorStartString = accentColorStartString;
+            AccentColorEndString = accentColorEndString;
+        }
 
-                var bgBrush = new LinearGradientBrush(
-                    gradientStops,
-                    new Point(0.0, 0.0),
-                    new Point(1.0, 1.0));
-
-                return bgBrush;
-            }
+        public Group(string name, string description, int userId, string accentColorStartString, string accentColorEndString)
+        {
+            Name = name;
+            Description = description;
+            UserId = userId;
+            AccentColorStartString = accentColorStartString;
+            AccentColorEndString = accentColorEndString;
         }
     }
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnMe.Views.BlitzPage"
+             xmlns:models="clr-namespace:LearnMe.Models"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+
+    <VerticalStackLayout>
+        <HorizontalStackLayout Margin="30">
+            <ImageButton
+                WidthRequest="24"
+                HeightRequest="24"
+                Source="imgback.png"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Clicked="BackButton_Clicked" />
+        </HorizontalStackLayout>
+
+        <Label
+         HorizontalOptions="Center"
+         TextColor="White" 
+         FontFamily="Bold"
+         FontSize="38" 
+         Text="{Binding TimerText}"
+         Margin="0,20,0,0"
+         VerticalOptions="CenterAndExpand"/>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Margin="0,20,0,0">
+            <Label
+                Margin="10,0,0,0"
+                FontFamily="MediumFont"
+                FontSize="25" 
+                Text="{Binding BadAnswer}"
+                TextColor="Red"
+                VerticalOptions="CenterAndExpand"/>
+
+            <Label
+                Margin="30,0,0,0"
+                FontFamily="MediumFont"
+                FontSize="25" 
+                Text="{Binding CardCount}" 
+                TextColor="White"
+                VerticalOptions="CenterAndExpand"/>
+
+            <Label
+                Margin="30,0,10,0"
+                FontFamily="MediumFont"
+                FontSize="25" 
+                Text="{Binding GoodAnswer}"
+                TextColor="ForestGreen"
+                VerticalOptions="CenterAndExpand"/>
+
+        </HorizontalStackLayout>
+
+        <Grid x:Name="CardContainer"
+          VerticalOptions="CenterAndExpand"
+          HorizontalOptions="CenterAndExpand"
+          Margin="0,20,0,20">
+            <!-- Карточки будут добавляться программно -->
+        </Grid>
+
+        <Button 
+            x:Name="StartAgainButton"
+            Text="Start Again"
+            Clicked="OnStartAgainButtonClicked"
+            BackgroundColor="#eb5757" 
+            TextColor="White" 
+            FontSize="16"
+            FontFamily="Bold"
+            CornerRadius="10"
+            WidthRequest="200"
+            HeightRequest="80"
+            Margin="30"
+            IsVisible="False"/>
+        <!-- Hide button initially -->
+    </VerticalStackLayout>
+</ContentPage>
