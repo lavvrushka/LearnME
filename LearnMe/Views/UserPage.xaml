@@ -22,16 +22,20 @@
                 <VerticalStackLayout>
             <!-- Profile Pic -->
                 <VerticalStackLayout Margin="10">
-                    <ImageButton
-                    x:Name="AvatarButton"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    WidthRequest="80"
-                    HeightRequest="80"
-                    CornerRadius="40" 
-                    Clicked="Avatar_Clicked"/>
+                        <ImageButton
+                            x:Name="AvatarButton"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            WidthRequest="80"
+                            HeightRequest="90"
+                            CornerRadius="30"
+                            BackgroundColor="Transparent"
+                            Source="cat.png"
+                            
+                            Clicked="Avatar_Clicked"/>
+                        <!--Source="{Binding CurrentUser.Avatar}"-->
 
-                <Label
+                        <Label
                    Margin="10"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
@@ -45,7 +49,7 @@
             <VerticalStackLayout>
                 <Button 
                     Command="{Binding AllGroupsCommand}" 
-                    Text="📚 Your groups                           >" 
+                    Text="🎯 Your roadmap                        >" 
                     Margin="10" 
                     BackgroundColor="Transparent" 
                     BorderColor="#2E3756" 
@@ -175,7 +179,7 @@
               HorizontalOptions="Center"
               BackgroundColor="Transparent"
               BorderColor="Transparent"
-              Clicked="CreateGroupPage_Clicked"/>
+              Clicked="CreatePage_Clicked"/>
 
 
             <Label

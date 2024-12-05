@@ -1,10 +1,8 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace LearnMe.Models
 {
@@ -23,24 +21,40 @@ namespace LearnMe.Models
         [Column("UserId")]
         public int UserId { get; set; }
 
-        [Column("AccentColorStartString")]
-        public string AccentColorStartString
+        public List<EventGroup> EventGroups { get; set; }
+
+        public Group()
         {
-            get;
-            set;
+            EventGroups = new List<EventGroup>();
         }
+
+        [Column("AccentColorStartString")]
+        public string AccentColorStartString { get; set; }
 
         [Column("AccentColorEndString")]
-        public string AccentColorEndString
+        public string AccentColorEndString { get; set; }
+
+        
+        
+
+
+        public Group(int id, string name, string description, int userId, string accentColorStartString, string accentColorEndString)
         {
-            get;
-            set;
+            Id = id;
+            Name = name;
+            Description = description;
+            UserId = userId;
+            AccentColorStartString = accentColorStartString;
+            AccentColorEndString = accentColorEndString;
         }
 
-
-
-
-
-       
+        public Group(string name, string description, int userId, string accentColorStartString, string accentColorEndString)
+        {
+            Name = name;
+            Description = description;
+            UserId = userId;
+            AccentColorStartString = accentColorStartString;
+            AccentColorEndString = accentColorEndString;
+        }
     }
 }

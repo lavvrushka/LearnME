@@ -75,16 +75,6 @@
                               RowDefinitions="*,Auto,Auto"
                               RowSpacing="4">
 
-                                <ImageButton
-                                    WidthRequest="24"
-                                    HeightRequest="24"
-                                    Margin="20,-100,0,0"
-                                    Source="imgmenu.png"
-                                    BackgroundColor="Transparent"
-                                    BorderColor="Transparent"
-                                    HorizontalOptions="End"
-                                    VerticalOptions="Center" 
-                                    Clicked="GroupDelete_Clicked"/>
 
 
                                 <Label
@@ -169,7 +159,7 @@
                       HorizontalOptions="Center"
                       BackgroundColor="Transparent"
                       BorderColor="Transparent"
-                      Clicked="CreateGroupPage_Clicked"/>
+                      Clicked="CreatePage_Clicked"/>
 
 
                     <Label

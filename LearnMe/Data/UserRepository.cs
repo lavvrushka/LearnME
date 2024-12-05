@@ -19,9 +19,15 @@ namespace LearnMe.Data
 
         public void AddUser(User user)
         {
+            if (string.IsNullOrEmpty(user.Avatar))
+            {
+                user.Avatar = "default_avatar_path"; // Задайте значение по умолчанию
+            }
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
         }
+
+
 
         public User GetUserById(int id)
         {

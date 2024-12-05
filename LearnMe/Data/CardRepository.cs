@@ -38,6 +38,17 @@ namespace LearnMe.Data
             }
         }
 
+        public void DeleteCardsByGroupId(int id)
+        {
+            foreach (Card card in _dbContext.Cards)
+            {
+                if (card.GroupId == id)
+                {
+                   DeleteCard(card);
+                }
+            }
+        }
+
         public void DeleteCard (Card card)
         {
             _dbContext.Cards.Remove(card);

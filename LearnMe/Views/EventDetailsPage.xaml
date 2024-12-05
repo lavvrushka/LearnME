@@ -1,0 +1,123 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnMe.Views.EventDetailsPage"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+
+    <Grid IgnoreSafeArea="{OnPlatform Android=True, iOS=False}">
+        <VerticalStackLayout
+            >
+        <!-- Main Content -->
+        <Grid
+          x:Name="MainContentGrid"
+          Padding="24,20,24,0" 
+          IgnoreSafeArea="{OnPlatform Android=True, iOS=False}"
+          BackgroundColor="{StaticResource PageBackgroundColor}"
+          ColumnDefinitions="*,Auto"
+          RowDefinitions="Auto,*">
+
+            <HorizontalStackLayout
+              Grid.Row="0"
+              Grid.Column="0"
+              Margin="0,0,0,30">
+                <!-- Removed Margin for HorizontalStackLayout -->
+                <ImageButton
+                   WidthRequest="24"
+                   HeightRequest="24"
+                   Source="imgback.png"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Clicked="BackButton_Clicked" />
+
+                <Label
+                    Style="{StaticResource PageHeaderStyle}"
+                    Text="Your Events/Units"
+                    Margin="10,0,0,0"/>
+            </HorizontalStackLayout>
+
+            <ScrollView             
+             Grid.Row="1"
+             Grid.Column="0"
+             Grid.ColumnSpan="2"
+             HorizontalScrollBarVisibility="Never"
+             VerticalScrollBarVisibility="Never"
+             Margin="0,0,0,0">
+                <CollectionView x:Name="EventGroup"
+                                HeightRequest="550"
+                                SelectionMode="Single"
+                                SelectionChanged="Events_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="1"
+                                         HorizontalItemSpacing="0"
+                                         VerticalItemSpacing="0"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Ваш текущий код -->
+                                <Border Grid.Row="0"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="200"
+                                        StrokeThickness="0"
+                                        Padding="20"
+                                        BackgroundColor="#2E3756">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="70"/>
+                                    </Border.StrokeShape>
+
+                                    <VerticalStackLayout Spacing="20"
+                                                         HorizontalOptions="Center"
+                                                         VerticalOptions="Center">
+                                        <Label Style="{StaticResource FeaturedGroupHeaderStyle}"
+                                               Text="{Binding Name}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                        <Label Style="{StaticResource FeaturedGroupHeaderStyle}"
+                                               Text="{Binding Description}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </VerticalStackLayout>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="2"/>
+                                    </Border.GestureRecognizers>
+                                </Border>
+                                <!-- Стрелочка -->
+                                <Image Grid.Row="1"
+                                       Source="arrow_down.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Start"
+                                       Margin="0,5,0,0"
+                                       WidthRequest="20"
+                                       HeightRequest="20" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </ScrollView>
+
+
+        </Grid>
+        <Label Text="Go towards your goal and don't stop"
+            FontSize="Large"
+
+                              Grid.ColumnSpan="2"
+            FontAttributes="Bold"
+            TextColor="White"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            Margin="0,0,30,0" />
+        </VerticalStackLayout>
+
+    </Grid>
+   
+</ContentPage>

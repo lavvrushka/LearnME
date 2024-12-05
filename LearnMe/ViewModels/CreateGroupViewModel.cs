@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LearnMe.Data;
 using LearnMe.Service;
+using LearnMe.Models;
 using LearnMe.Utils;
 
 
@@ -23,12 +24,10 @@ namespace LearnMe.ViewModels
         {
             _groupsService = groupsService;
         }
-
         public int AddGroup(string name, string description)
         {
             int userid = LearnMe.Utils.AppContext.CurrentUser.Id;
-           return _groupsService.AddGroup(new Models.Group { Name = name, Description = description, UserId=userid, AccentColorEndString = "#c6502f", AccentColorStartString= "#996237" });   
-
+            return _groupsService.AddGroup(new Models.Group(name,description,userid, "#996237", "#c6502f"));
 
         }
     }

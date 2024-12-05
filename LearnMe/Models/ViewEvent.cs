@@ -10,31 +10,28 @@ using System.Runtime.CompilerServices;
 using LearnMe.Models;
 using Microsoft.Maui.Graphics; // Use this for Colors in MAUI
 
+
 namespace LearnMe.Models
 {
-    public class ViewGroup : INotifyPropertyChanged
+    public class ViewEvent : INotifyPropertyChanged
     {
         private int _id;
         private string _name;
         private string _description;
         private int _userId;
-        private int _eventId;
-    
         private Microsoft.Maui.Graphics.Color _accentColorStart;
         private Microsoft.Maui.Graphics.Color _accentColorEnd;
 
-        public ViewGroup(Group group)
+        public ViewEvent(Event _event)
         {
-            Id = group.Id;
-            Name = group.Name;
-            Description = group.Description;
-            UserId = group.UserId;
-            AccentColorEnd = Microsoft.Maui.Graphics.Color.FromArgb(group.AccentColorEndString);
-            AccentColorStart = Microsoft.Maui.Graphics.Color.FromArgb(group.AccentColorStartString);
+            Id = _event.Id;
+            Name = _event.Name;
+            Description = _event.Description;
+            UserId = _event.UserId;
+            AccentColorEnd = Microsoft.Maui.Graphics.Color.FromArgb(_event.AccentColorEndString);
+            AccentColorStart = Microsoft.Maui.Graphics.Color.FromArgb(_event.AccentColorStartString);
         }
 
-
-     
         public int Id
         {
             get => _id;
@@ -59,14 +56,6 @@ namespace LearnMe.Models
             set => SetProperty(ref _userId, value);
         }
 
-        public int EventId
-        {
-            get => _eventId;
-            set => SetProperty(ref _eventId, value);
-        }
-
-        public bool IsChecked { get; set; }
-
         public Microsoft.Maui.Graphics.Color AccentColorStart
         {
             get => _accentColorStart;
@@ -78,7 +67,6 @@ namespace LearnMe.Models
             get => _accentColorEnd;
             set => SetProperty(ref _accentColorEnd, value);
         }
-
 
         public Brush Background
         {

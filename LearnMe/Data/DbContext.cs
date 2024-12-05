@@ -30,10 +30,11 @@ namespace LearnMe.Data
 
             modelBuilder.Entity<User>().HasData(new User
             {
-                Id = 1, // Указываем отрицательное значение для Id
+                Id = 1,
                 Username = "admin",
                 Password = "0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c",
                 Email = "forinovegor@gmail.com",
+                Avatar = "default_avatar_path",
                 Role = Role.ADMIN
             });
 
@@ -41,6 +42,8 @@ namespace LearnMe.Data
             modelBuilder.Entity<UserSession>().ToTable("Sessions");
             modelBuilder.Entity<Card>().ToTable("Cards");
             modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Event>().ToTable("Events");
+            modelBuilder.Entity<EventGroup>().ToTable("EventGroups");
 
         }
 
@@ -49,5 +52,9 @@ namespace LearnMe.Data
         public DbSet<UserSession> Sessions { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Card> Cards { get; set; }
+
+        public DbSet<Event> Events { get; set; }
+
+        public DbSet<EventGroup> EventGroups { get; set; }
     }
 }

@@ -158,35 +158,6 @@
               TextColor="White" 
               FontFamily="MediumFont"
               FontSize="20" 
-              Text="Notifications"
-              VerticalOptions="CenterAndExpand"/>
-
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Frame HasShadow="False" Padding="0" Margin="0" BackgroundColor="#2E3756" BorderColor="#2E3756" WidthRequest="360" HeightRequest="50">
-                    <StackLayout Orientation="Horizontal" Spacing="105">
-                        <Label 
-                            Margin="10"
-                            TextColor="White"
-                            Text="Push notifications" 
-                            FontSize="16" 
-                            HorizontalOptions="Start" 
-                            VerticalOptions="Start"/>
-                        <Switch 
-                            IsToggled="{Binding IsPasswordVisible}" 
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            Toggled="OnShowPasswordButtonToggled"
-                            OnColor="Grey"
-                            ThumbColor="#eb5757"/>
-                    </StackLayout>
-                </Frame>
-            </HorizontalStackLayout>
-
-            <Label
-              Margin="10,40,0,10"
-              TextColor="White" 
-              FontFamily="MediumFont"
-              FontSize="20" 
               Text="Change account"
               VerticalOptions="CenterAndExpand"/>
 

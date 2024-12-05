@@ -17,17 +17,20 @@
     <ShellContent  Route="user" ContentTemplate="{DataTemplate views:UserPage}" />
     <ShellContent  Route="explore" ContentTemplate="{DataTemplate views:ExplorePage}" />
     <ShellContent  Route="create_group" ContentTemplate="{DataTemplate views:CreateGroupPage}" />
-    
-    <ShellContent  Route="user_groups" ContentTemplate="{DataTemplate views:UserGroupsPage}" />
+
+    <ShellContent  Route="user_events" ContentTemplate="{DataTemplate views:UserEventsPage}" />
     <ShellContent  Route="user_settings" ContentTemplate="{DataTemplate views:UserSettingsPage}" />
     <ShellContent  Route="achievements" ContentTemplate="{DataTemplate views:AchievementsPage}" />
     <ShellContent  Route="avatar" ContentTemplate="{DataTemplate views:AvatarPage}" />
     <ShellContent  Route="group_details" ContentTemplate="{DataTemplate views:GroupDetailsPage}" />
 
-
+    <ShellContent  Route="memorization" ContentTemplate="{DataTemplate views:MemorizationPage}" />
+    <ShellContent  Route="flip" ContentTemplate="{DataTemplate views:FlipCardPage}" />
     <ShellContent  Route="blitz" ContentTemplate="{DataTemplate views:BlitzPage}" />
     <ShellContent  Route="memorization" ContentTemplate="{DataTemplate views:AchievementsPage}" />
     <ShellContent  Route="flip" ContentTemplate="{DataTemplate views:AvatarPage}" />
 
-    
+    <ShellContent  Route="create" ContentTemplate="{DataTemplate views:CreatePage}" />
+
+    <ShellContent  Route="create_event" ContentTemplate="{DataTemplate views:CreateEventPage}" />
 </Shell>

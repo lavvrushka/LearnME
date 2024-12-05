@@ -43,20 +43,20 @@
              VerticalOptions="Center"
              HorizontalOptions="End"
              Stroke="{StaticResource LightBorderColor}"
-             StrokeThickness="6"
+             StrokeThickness="3"
              Grid.Row="0"
              Grid.Column="1">
 
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="28"/>
-                </Border.StrokeShape>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="28"/>
+                    </Border.StrokeShape>
 
                 <Image
                  VerticalOptions="Center"
                  HorizontalOptions="Center"
                  WidthRequest="50"
                  HeightRequest="50"
-                 Source="profilepic.jpeg">
+                 Source="two.png">
                     <Image.Clip>
                         <EllipseGeometry
                          Center="25,25"
@@ -262,7 +262,7 @@
                      HorizontalOptions="Center"
                      BackgroundColor="Transparent"
                      BorderColor="Transparent"
-                     Clicked="CreateGroupPage_Clicked"/>
+                     Clicked="CreatePage_Clicked"/>
 
 
                     <Label

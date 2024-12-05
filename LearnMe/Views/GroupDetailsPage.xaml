@@ -27,7 +27,7 @@
                    Source="imgmenu.png"
                    HorizontalOptions="End"
                    VerticalOptions="Center" 
-                   Clicked="GroupDelete_Clicked"/>
+                   Clicked="GroupChange_Clicked"/>
             </HorizontalStackLayout>
 
             <VerticalStackLayout>
@@ -141,29 +141,32 @@
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
-                        <DataTemplate
-                          x:DataType="models:Card">
+                        <DataTemplate x:DataType="models:Card">
                             <Border
-                              VerticalOptions="Fill"
-                              WidthRequest="200"
-                              StrokeThickness="0"
-                              Padding="20"
-                              BackgroundColor="#2E3756"  >
-
+                                VerticalOptions="Fill"
+                                WidthRequest="200"
+                                StrokeThickness="0"
+                                Padding="20"
+                                BackgroundColor="#2E3756" >
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="24"/>
                                 </Border.StrokeShape>
-
+                                
                                 <VerticalStackLayout>
                                     <Label
-                                      Style="{StaticResource FeaturedGroupHeaderStyle}"
-                                      Text="{Binding Question}"
-                                      Margin="10,0,0,0"/>
+                                        Style="{StaticResource FeaturedGroupHeaderStyle}"
+                                        Text="{Binding Question}"
+                                        Margin="10,0,0,0"/>
                                     <Label
-                                      Style="{StaticResource FeaturedGroupHeaderStyle}"
-                                      Text="{Binding Question}"
-                                      Margin="10,20,0,0"/>
+                                        Style="{StaticResource FeaturedGroupHeaderStyle}"
+                                        Text="{Binding Answer}"
+                                        Margin="10,20,0,0"/>
                                 </VerticalStackLayout>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        NumberOfTapsRequired="2"
+                                        Tapped="OnCardDoubleTapped"/>
+                                </Border.GestureRecognizers>
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

@@ -51,23 +51,33 @@ namespace LearnMe
             builder.Services.AddTransient<CardService>();
             builder.Services.AddTransient<GroupsService>();
 
+            builder.Services.AddTransient<UserService>();
             builder.Services.AddSingleton<ExploreViewModel>();
             builder.Services.AddSingleton<ExplorePage>();
 
             builder.Services.AddSingleton<UserViewModel>();
             builder.Services.AddSingleton<UserPage>();
+            builder.Services.AddSingleton<BlitzViewModel>(); 
 
             builder.Services.AddSingleton<CreateGroupViewModel>();
             builder.Services.AddSingleton<CreateGroupPage>();
 
-            builder.Services.AddSingleton<UserGroupsPage>();
+            builder.Services.AddSingleton<CreatePage>();
+            builder.Services.AddSingleton<CreateEventPage>();
+
+            builder.Services.AddSingleton<UserEventsPage>();
             builder.Services.AddSingleton<AchievementsPage>();
             builder.Services.AddSingleton<UserSettingsPage>();
             builder.Services.AddSingleton<AvatarPage>();
 
-            //var dbContext =new DbContext();
-            //dbContext.Database.EnsureCreated();
-            //dbContext.Dispose();
+            builder.Services.AddSingleton<EventRepository>();
+            builder.Services.AddSingleton<EventService>();
+            builder.Services.AddSingleton<EventGroupRepository>();
+            builder.Services.AddSingleton<EventGroupService>();
+            builder.Services.AddSingleton<CreateEventViewModel>();
+
+   
+
 
 
 #if DEBUG

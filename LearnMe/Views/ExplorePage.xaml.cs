@@ -16,9 +16,9 @@ public partial class ExplorePage : ContentPage
         _cardService = cardService;
     }
 
-    private void CreateGroupPage_Clicked(object sender, EventArgs e)
+    private void CreatePage_Clicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//create_group");
+        Shell.Current.GoToAsync("//create");
     }
     private void ProfilePage_Clicked(object sender, EventArgs e)
     {
@@ -37,7 +37,7 @@ public partial class ExplorePage : ContentPage
         {
             // Предполагая, что у вас есть доступ к ID группы из объекта ViewGroup
             int groupId = selectedGroup.Id;
-            await Navigation.PushAsync(new GroupDetailsPage(groupId, selectedGroup, _cardService));
+            await Navigation.PushAsync(new GroupDetailsPage(groupId, selectedGroup, _cardService, _groupsService, new CollectionView()));
         }
     }
     async void GroupDelete_Clicked(object sender, EventArgs e)

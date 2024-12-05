@@ -22,19 +22,7 @@ namespace LearnMe.Views
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-
-            //List<ViewGroup> viewdbgroups = new List<ViewGroup>();
-
-            //var dbgroups = _groupsService.GetDbGroups();
-            //foreach (var group in dbgroups)
-            //{
-            //    viewdbgroups.Add(new ViewGroup(group));
-            //}
-
-           
-            //lstAllGroups.ItemsSource = viewdbgroups;
-           
+            base.OnAppearing();    
 
             List<ViewGroup> viewcreategroups = new List<ViewGroup>();
 
@@ -52,18 +40,35 @@ namespace LearnMe.Views
             var selectedGroup = e.CurrentSelection.FirstOrDefault() as ViewGroup;
             if (selectedGroup != null)
             {
-                // Предполагая, что у вас есть доступ к ID группы из объекта ViewGroup
+                
                 int groupId = selectedGroup.Id;
-                await Navigation.PushAsync(new GroupDetailsPage(groupId, selectedGroup, _cardService));
+                await Navigation.PushAsync(new GroupDetailsPage(groupId, selectedGroup, _cardService, _groupsService, YouGroups));
             }
         }
 
 
         async void GroupDelete_Clicked(object sender, EventArgs e)
         {
+            var selectedGroup = (sender as ImageButton).BindingContext as ViewGroup;
             bool result = await DisplayAlert("Confirm Action", "Do you want to delete the item?", "Yes", "No");
-            await DisplayAlert("Notification", "You chose: " + (result ? "Delete" : "Cancel"), "OK");
+
+            if (result)
+            {
+                _groupsService.RemoveGroup(selectedGroup.Id);
+                _cardService.DeleteCardsByGroupId(selectedGroup.Id);
+                await DisplayAlert("Notification", "Group deleted successfully!", "OK");
+
+                RefreshGroupList();
+            }
         }
+
+        private void RefreshGroupList()
+        {
+            var lst = _groupsService.GetCreatedGroups();
+            var viewcreategroups = lst.Select(group => new ViewGroup(group)).ToList();
+            YouGroups.ItemsSource = viewcreategroups;
+        }
+
         private void ExplorePage_Clicked(object sender, EventArgs e)
         {
             Shell.Current.GoToAsync("//explore");
@@ -73,9 +78,9 @@ namespace LearnMe.Views
         {
             Shell.Current.GoToAsync("//main");
         }
-        private void CreateGroupPage_Clicked(object sender, EventArgs e)
+        private void CreatePage_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//create_group");
+            Shell.Current.GoToAsync("//create");
         }
         private void ProfilePage_Clicked(object sender, EventArgs e)
         {

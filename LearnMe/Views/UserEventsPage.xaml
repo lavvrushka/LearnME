@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LearnMe.Views.UserGroupsPage"
+             x:Class="LearnMe.Views.UserEventsPage"
              Shell.NavBarIsVisible="False"
              xmlns:models="clr-namespace:LearnMe.Models"
              Shell.FlyoutBehavior="Disabled">
@@ -16,35 +16,40 @@
                     HorizontalOptions="Start"
                     VerticalOptions="Center"
                     Clicked="BackButton_Clicked" />
+
+                <Label
+                 Style="{StaticResource PageHeaderStyle}"
+                 Text="Your Events/Units "
+                 Margin="10,0,0,0"/>
             </HorizontalStackLayout>
 
             <CollectionView
-              x:Name="YouGroups"
+              x:Name="Youevents"
               HeightRequest="650"
               SelectionMode="Single"
-              SelectionChanged="Groups_SelectionChanged">   
+              SelectionChanged="Events_SelectionChanged">
 
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout
+                    <GridItemsLayout
                       Orientation="Vertical"
-                      ItemSpacing="10" />
+                      Span="2"
+                      HorizontalItemSpacing="2"
+                      VerticalItemSpacing="2" />
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate
-                        x:DataType="models:ViewGroup">
+                        x:DataType="models:ViewEvent">
                         <Border
                           VerticalOptions="Fill"
-                          WidthRequest="350"
+                          WidthRequest="200"
                           HeightRequest="200"
                           StrokeThickness="0"
                           Background = "{Binding Background}"
                           Padding="20">
 
-
-
                             <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="24"/>
+                                <RoundRectangle CornerRadius="35"/>
                             </Border.StrokeShape>
 
                             <Grid
@@ -60,8 +65,7 @@
                                     BorderColor="Transparent"
                                     HorizontalOptions="End"
                                     VerticalOptions="Center" 
-                                    Clicked="GroupDelete_Clicked"/>
-
+                                   />
 
                                 <Label
                                   Grid.Row="1"

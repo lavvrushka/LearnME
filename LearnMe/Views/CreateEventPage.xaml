@@ -1,0 +1,211 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnMe.Views.CreateEventPage"
+             xmlns:models="clr-namespace:LearnMe.Models"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
+
+    <Grid IgnoreSafeArea="{OnPlatform Android=True, iOS=False}">
+        <Grid x:Name="MainContentGrid"
+              Padding="24,52,24,0"
+              IgnoreSafeArea="{OnPlatform Android=True, iOS=False}"
+              BackgroundColor="{StaticResource PageBackgroundColor}"
+              ColumnDefinitions="*,Auto"
+              RowDefinitions="Auto,*">
+
+            <ScrollView Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalScrollBarVisibility="Never"
+                        VerticalScrollBarVisibility="Never">
+
+                <VerticalStackLayout>
+
+                    <HorizontalStackLayout Margin="0,0,0,10">
+                        <Label TextColor="White"
+                               FontSize="32"
+                               Text="Create Event"
+                               VerticalOptions="CenterAndExpand" />
+                    </HorizontalStackLayout>
+
+                    <Rectangle HorizontalOptions="Fill"
+                               HeightRequest="2"
+                               Stroke="Transparent"
+                               Fill="{StaticResource LightBorderColor}" />
+
+                    <VerticalStackLayout>
+                        <Entry x:Name="EventEntry"
+                               Placeholder="Subject, chapter, section..."
+                               HorizontalOptions="Start"
+                               WidthRequest="320"
+                               HeightRequest="40"
+                               Margin="10,10,0,0" />
+
+                        <Label TextColor="White"
+                               Text="Name"
+                               FontSize="16"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Margin="10,0,0,10" />
+
+                        <Entry x:Name="DEventEntry"
+                               Placeholder="What is this training module about?"
+                               HorizontalOptions="Start"
+                               WidthRequest="320"
+                               HeightRequest="40"
+                               Margin="10,0,0,0" />
+
+                        <Label TextColor="White"
+                               Text="Description"
+                               FontSize="16"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Margin="10,0,0,10" />
+                    </VerticalStackLayout>
+
+                    <Rectangle HorizontalOptions="Fill"
+                               HeightRequest="2"
+                               Stroke="Transparent"
+                               Fill="{StaticResource LightBorderColor}" />
+
+                    <CollectionView x:Name="AllGroups"
+                                    HeightRequest="330"
+                                    SelectionMode="Single"
+                                    SelectionChanged="Groups_SelectionChanged"
+                                    Margin="10,0,0,10">
+
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical"
+                                               ItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:ViewGroup">
+                                <Border VerticalOptions="Fill"
+                                        WidthRequest="300"
+                                        HeightRequest="180"
+                                        StrokeThickness="0"
+                                        Background="{Binding Background}"
+                                        Padding="20">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="24" />
+                                    </Border.StrokeShape>
+
+                                    <Grid RowDefinitions="*,Auto,Auto"
+                                          RowSpacing="4">
+                                        <CheckBox x:Name="choose_group"
+                                                  IsChecked="{Binding IsChecked}"
+                                                  Margin="20,-100,0,0"
+                                                  Grid.Row="0"
+                                                  HorizontalOptions="End"
+                                                  VerticalOptions="Center" />
+
+                                        <Label Grid.Row="1"
+                                               Style="{StaticResource FeaturedGroupHeaderStyle}"
+                                               Text="{Binding Name}"
+                                               Margin="0,8,0,0" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Button x:Name="SaveEvent"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="Save"
+                        HorizontalOptions="Center"
+                        Margin="0,0,20,0"
+                        Clicked="SaveEvent_Clicked" />  
+                </VerticalStackLayout>
+
+            </ScrollView>
+
+            <Border Padding="16,0"
+                    BackgroundColor="#393965"
+                    Stroke="{StaticResource BorderColor}"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="End"
+                    Margin="0,0,0,5"
+                    HeightRequest="90"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="45" />
+                </Border.StrokeShape>
+
+                <Grid HorizontalOptions="Fill"
+                      VerticalOptions="Center"
+                      RowDefinitions="Auto,Auto"
+                      ColumnDefinitions="*,*,*,*"
+                      RowSpacing="6">
+
+                    <ImageButton WidthRequest="40"
+                                 HeightRequest="40"
+                                 Source="imgexplore.png"
+                                 Grid.Row="0"
+                                 Grid.Column="0"
+                                 HorizontalOptions="Center"
+                                 BackgroundColor="Transparent"
+                                 BorderColor="Transparent"
+                                 Clicked="ExplorePage_Clicked" />
+
+                    <Label Text="Explore"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource MenuLabelStyle}" />
+
+                    <ImageButton WidthRequest="30"
+                                 HeightRequest="30"
+                                 Source="main.png"
+                                 Grid.Row="0"
+                                 Grid.Column="1"
+                                 HorizontalOptions="Center"
+                                 BackgroundColor="Transparent"
+                                 BorderColor="Transparent"
+                                 Clicked="MainPage_Clicked" />
+
+                    <Label Text="Home"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource MenuLabelStyle}" />
+
+                    <ImageButton WidthRequest="40"
+                                 HeightRequest="40"
+                                 Source="imgfavorite.png"
+                                 Grid.Row="0"
+                                 Grid.Column="2"
+                                 HorizontalOptions="Center"
+                                 BackgroundColor="Transparent"
+                                 BorderColor="Transparent"
+                                 Clicked="CreatePage_Clicked" />
+
+                    <Label Text="Create"
+                           Grid.Row="1"
+                           Grid.Column="2"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource MenuLabelStyle}" />
+
+                    <ImageButton WidthRequest="40"
+                                 HeightRequest="40"
+                                 Source="imgprofile.png"
+                                 Grid.Row="0"
+                                 Grid.Column="3"
+                                 HorizontalOptions="Center"
+                                 BackgroundColor="Transparent"
+                                 BorderColor="Transparent"
+                                 Clicked="ProfilePage_Clicked" />
+
+                    <Label Text="Profile"
+                           Grid.Row="1"
+                           Grid.Column="3"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource MenuLabelStyle}" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

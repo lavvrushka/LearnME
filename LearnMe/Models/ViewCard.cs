@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace LearnMe.Models
 {
 
-    public class FlipCard
+    public class ViewCard
     {
 
-        public FlipCard(Card card)
+        public ViewCard(Card card)
         {
             Id = card.Id;
             Question = card.Question;
@@ -28,7 +28,7 @@ namespace LearnMe.Models
 
         public int GroupId { get; set; }
 
-
+        public Color BackgroundColor { get; set; }
 
 
     }

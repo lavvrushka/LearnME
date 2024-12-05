@@ -245,7 +245,7 @@
                     HorizontalOptions="Center"
                     BackgroundColor="Transparent"
                     BorderColor="Transparent"
-                    Clicked="CreateGroupPage_Clicked"/>
+                    Clicked="CreatePage_Clicked"/>
 
 
                 <Label
